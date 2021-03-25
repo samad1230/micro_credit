@@ -15,14 +15,14 @@ class CreateSavingsTable extends Migration
     {
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
-            $table->integer('member_id');
-            $table->integer('savings_no');
-            $table->integer('savings_amount');
-            $table->integer('savings_profit');
-            $table->integer('total_amount');
-            $table->integer('savings_windrow');
-            $table->integer('savings_blanch');
-            $table->integer('status');
+            $table->string('member_id');
+            $table->string('savings_no');
+            $table->float('savings_amount')->default(0);
+            $table->float('savings_profit')->default(0);
+            $table->float('total_amount')->default(0);
+            $table->float('savings_windrow')->default(0);
+            $table->float('savings_blanch')->default(0);
+            $table->integer('status')->default(1);
             $table->string('opening_date');
             $table->timestamps();
         });

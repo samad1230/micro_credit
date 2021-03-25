@@ -15,6 +15,10 @@ class CreateCashesTable extends Migration
     {
         Schema::create('cashes', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
+            $table->string('description');
+            $table->float('dr')->nullable();
+            $table->float('cr')->nullable();
             $table->timestamps();
         });
     }

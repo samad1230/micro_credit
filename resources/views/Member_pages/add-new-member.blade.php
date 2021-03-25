@@ -14,15 +14,6 @@
                         <div class="card-title">{{ ucwords('add new member') }}</div>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form action="{{route('Member.store')}}" method="post" class="needs-validation" novalidate="novalidate" autocomplete="on" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
@@ -173,6 +164,6 @@
 @endsection
 
 @section('page-script')
-
+    <script src="{{asset('assets/js/scripts/form.validation.script.min.js')}}"></script>
 @endsection
 

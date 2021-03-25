@@ -6,6 +6,7 @@ use App\Admin_model\CommonModel;
 use App\Http\Controllers\Controller;
 use App\Member_model\Member;
 use App\Member_model\NidImage;
+use App\Member_model\Saving;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,7 @@ class MemberController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-//            'phone' => 'required|min:11|max:14',
+            'phone' => 'required|min:11|max:14',
             'father_name' => 'required',
             'income_source' => 'required',
             'nid_no' => 'required',
@@ -62,6 +63,7 @@ class MemberController extends Controller
         $model_common = new CommonModel();
         $slag =  $model_common->slagdata();
         $ImgName =  $model_common->ImageName();
+        $SavingAcno =  $model_common->SavingAcno();
         $time = time();
 
         $current = new Carbon();
@@ -83,7 +85,7 @@ class MemberController extends Controller
         $member->present_address=$request->present_address;
         $member->permanent_address=$request->permanent_address;
         $member->join_date=$date;
-        $member->status="1";
+        $member->status="0";
         $member->slag=$slag;
         $member->user_id=$user_id;
         $member->save();
@@ -103,10 +105,17 @@ class MemberController extends Controller
         $avatarimage = $request->avatar_image;
         if($request->hasFile('avatar_image')){
             $avatarimageFilename = time() . $ImgName . $avatarimage->getClientOriginalExtension();
-            Image::make($avatarimage->getRealPath())->resize(450, 300)->save(public_path('/Media/Member_Avature/'.$avatarimageFilename));
+            Image::make($avatarimage->getRealPath())->resize(300, 300)->save(public_path('/Media/Member_Avature/'.$avatarimageFilename));
             $member_nuid->member_image=$avatarimageFilename;
         }
         $member_nuid->save();
+
+
+        $saving = new Saving();
+        $saving->member_id=$memberid;
+        $saving->savings_no=$SavingAcno;
+        $saving->opening_date=$date;
+        $saving->save();
 
         $notification = array(
             'message' => 'Member has been created successfully!',
@@ -122,9 +131,10 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slag)
     {
-        //
+        $member = Member::where('slag',$slag)->first();
+        return view('Member_pages.memver_view_single',compact('member'));
     }
 
     /**
@@ -145,9 +155,56 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slag)
     {
-        //
+        $model_common = new CommonModel();
+        $ImgName =  $model_common->ImageName();
+
+        $user_id =Auth::user()->id;
+
+        $member = Member::where('slag',$slag)->first();
+        $member->name=$request->name;
+        $member->mobile=$request->phone;
+        $member->father_name=$request->father_name;
+        $member->occupation=$request->income_source;
+        $member->present_address=$request->present_address;
+        $member->permanent_address=$request->permanent_address;
+        $member->user_id=$user_id;
+        $member->save();
+
+        $member_nuid = NidImage::where('member_id',$member->id)->first();
+        $member_nuid->nuid_no=$request->nid_no;
+        $nuidimage = $request->nid_image;
+
+        if($request->hasFile('nid_image')){
+            if ($member_nuid->nuid_image !=null){
+                $path = 'Media/Member_NUID/' . $member_nuid->nuid_image;
+                unlink($path);
+            }
+            $nuidimageFilename = time() . $ImgName . $nuidimage->getClientOriginalExtension();
+            Image::make($nuidimage->getRealPath())->resize(450, 300)->save(public_path('/Media/Member_NUID/'.$nuidimageFilename));
+            $member_nuid->nuid_image=$nuidimageFilename;
+        }
+
+        $avatarimage = $request->avatar_image;
+        if($request->hasFile('avatar_image')){
+            if ($member_nuid->member_image !=null){
+                $path = 'Media/Member_Avature/' . $member_nuid->member_image;
+                unlink($path);
+            }
+
+            $avatarimageFilename = time() . $ImgName . $avatarimage->getClientOriginalExtension();
+            Image::make($avatarimage->getRealPath())->resize(300, 350)->save(public_path('/Media/Member_Avature/'.$avatarimageFilename));
+            $member_nuid->member_image=$avatarimageFilename;
+        }
+        $member_nuid->save();
+
+        $notification = array(
+            'message' => 'Member has been Update successfully!',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
     }
 
     /**
@@ -161,8 +218,5 @@ class MemberController extends Controller
         //
     }
 
-    public function AllMember()
-    {
-        return view('Member_pages.add-new-member');
-    }
+
 }

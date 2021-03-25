@@ -1,7 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="" />
+    <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Accounts/ExpenseModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/CapitalController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/ExpenseModelController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Register/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_163121_create_expense_models_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16166610351616661035cwmi.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16166610481616661048znqd.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16166805621616680562j7pe.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16166567341616656734zdno.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16166607971616660797xgi4.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16166805621616680562j7pe.PIB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/datatables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/datatables.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/sweetalert.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/all_member.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/memver_view_single.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Register_page/capital_view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Register_page/cash_view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Register_page/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Accounts/Capital.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accounts/Capital.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Accounts/Cash.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accounts/Cash.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin_model/CommonModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin_model/CommonModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/Dps.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Dps.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/NidImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/NidImage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/Saving.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Saving.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210701_create_capitals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210701_create_capitals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210719_create_cashes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210719_create_cashes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_002956_create_dps_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_002956_create_dps_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003135_create_savings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003135_create_savings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165842701616584270kq7f.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165861541616586154vb41.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165874991616587499rgd1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165925531616592552u02q.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165927831616592783pzie.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161659288516165928853q7o.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161659580416165958049qsk.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16165969651616596965at14.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161659756816165975689rnb.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161659764316165976436xj1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165842701616584270kq7f.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165861541616586154vb41.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165874991616587499rgd1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165925521616592552u02q.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165927831616592783pzie.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161659288516165928853q7o.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161659580416165958049qsk.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16165969651616596965at14.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161659756816165975689rnb.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161659764316165976436xj1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/plugins/apexcharts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/plugins/apexcharts.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Common_Section/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Common_Section/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Common_Section/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Common_Section/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/Admin_dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/Admin_dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +92,9 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -122,16 +207,27 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1qCq6lFdrqBwJcMxgpugvfoyjzX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../micro_credit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Register_page" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Register_page" />
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Member_pages" />
+      <recent name="D:\xampp\htdocs\MikroLoad\public\assets" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -148,21 +244,40 @@
       <option name="presentableId" value="Default" />
       <updated>1616593747540</updated>
       <workItem from="1616593748727" duration="4533000" />
-      <workItem from="1616606453989" duration="3559000" />
+      <workItem from="1616606453989" duration="6027000" />
+      <workItem from="1616651399005" duration="20940000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616597675127">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616597675127" />
-    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1616610511460">
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616670418462">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616610511460" />
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616670418462" />
+    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1616670155455">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616670155455" />
   </component>
 </project>

@@ -21,10 +21,41 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// home dashboard
 Route::get('/Admin/Dashboard', 'Main_Controller\HomeController@index')->name('admin.dashboard');
 Route::get('/User/Dashboard', 'Main_Controller\HomeController@index')->name('user.dashboard');
+//home dashboard
 
+
+Route::POST('/User/profile/Update','Main_Controller\HomeController@UserProficeUpdate')->name('profice_update');
+// user profice dupdate
+
+
+//======================== All index route ================================//
+Route::get('/Admin/All-Member', 'Main_Controller\MainIndexController@AllMember')->name('admin.all-members');
+Route::get('/Capital/Details', 'Main_Controller\MainIndexController@CapitalDetails')->name('Capital.details');
+Route::get('/Cash/Details', 'Main_Controller\MainIndexController@CashDetails')->name('Cash.details');
+Route::get('/Admin/Investment', 'Main_Controller\MainIndexController@AllMember')->name('admin.investment');
+Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController@AllMember')->name('Daily.investment-installment');
+Route::get('/Admin/All-Investment', 'Main_Controller\MainIndexController@AllMember')->name('admin.all-Investment');
+//======================== All index route ================================//
+
+
+// capita and cash controller ====================================
+Route::post('/capital-introduce','Accounts\CapitalController@capitalIntroduce')->name('admin.capital-introduce');
+Route::post('/capital_withdrawal','Accounts\CapitalController@capitalWithdrawal')->name('admin.capital-withdrawal');
+// capita and cash controller ====================================
+
+
+//======================== ExpenseModelController===========================
+Route::post('expense-register','Accounts\ExpenseModelController@expenseRegister')->name('admin.expense-register');
+//======================== ExpenseModelController===========================
+
+//====================investment roure  ========================================
+
+//====================investment roure  ========================================
 
 Route::resource('Member','Member\MemberController');
-Route::get('Admin/All-Member','Member\MemberController@AllMember')->name('admin.all-members');
+Route::resource('Registers','Register\RegisterController');
+
 

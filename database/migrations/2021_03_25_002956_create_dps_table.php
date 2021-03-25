@@ -15,15 +15,16 @@ class CreateDpsTable extends Migration
     {
         Schema::create('dps', function (Blueprint $table) {
             $table->id();
-            $table->integer('member_id');
+            $table->string('member_id');
             $table->integer('dps_type');
-            $table->integer('dps_no');
-            $table->integer('dps_amount');
-            $table->integer('dps_profit');
-            $table->integer('total_amount');
-            $table->integer('dps_windrow');
-            $table->integer('dps_blanch');
-            $table->integer('status');
+            $table->string('dps_no');
+            $table->float('dps_installment');
+            $table->float('dps_amount')->default(0);
+            $table->float('dps_profit')->default(0);
+            $table->float('total_amount')->default(0);
+            $table->float('dps_windrow')->default(0);
+            $table->float('dps_blanch')->default(0);
+            $table->integer('status')->default(1);
             $table->string('opening_date');
             $table->timestamps();
         });

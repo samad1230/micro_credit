@@ -15,5 +15,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/plugins/fontawesome-5.css')}}" />
     <link href="{{asset('assets/css/plugins/metisMenu.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('assets/css/plugins/toastr.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/style.css')}}" />
     @yield('page-css')
 </head>
