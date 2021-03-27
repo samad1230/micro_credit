@@ -77,9 +77,9 @@
                     </li>
 
                     <li class="Ul_li--hover">
-                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Admin/Investment' || request()->path() == 'Admin/All-Investment' || request()->path() == 'Daily/investment-installment' || strpos(request()->path(),'investment') != false ? 'aria-expanded="true"':'' !!}>
+                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Admin/Investment' || request()->path() == 'Admin/All-Investment' ||request()->path() == 'Pending/investment' || request()->path() == 'Daily/investment-installment' || strpos(request()->path(),'investment') != false ? 'aria-expanded="true"':'' !!}>
                             <i class="i-Financial text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Admin/Investment' || request()->path() == 'Daily/investment-installment' || request()->path() == 'Admin/All-Investment' || strpos(request()->path(),'investment') != false ? 'font-weight-bold':'' }}">Investments</span>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Admin/Investment' || request()->path() == 'Daily/investment-installment' || request()->path() == 'Admin/All-Investment' ||request()->path() == 'Pending/investment' || strpos(request()->path(),'investment') != false ? 'font-weight-bold':'' }}">Investments</span>
                         </a>
                         <ul class="mm-collapse {{ request()->path() == 'Admin/Investment' || request()->path() == 'Daily/investment-installment' || request()->path() == 'Admin/All-Investment' || strpos(request()->path(),'investment') != false ? 'mm-show':'' }}">
                             <li class="item-name">
@@ -90,16 +90,23 @@
                             </li>
 
                             <li class="item-name">
-                                <a href="{{ route('Daily.investment-installment') }}">
+                                <a href="{{ route('pending.investment') }}">
                                     <i class="nav-icon i-Clock-4"></i>
-                                    <span class="item-name {{ request()->path() == 'Daily/investment-installment' ? 'font-weight-bold':'' }}">Daily Installment</span>
+                                    <span class="item-name {{ request()->path() == 'Pending/investment' ? 'font-weight-bold':'' }}">Pending Invest</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('admin.all-Investment') }}">
+                                <a href="{{ route('active.all-Investment') }}">
                                     <i class="nav-icon i-Receipt-4"></i>
-                                    <span class="item-name {{ request()->path() == 'Admin/All-Investment' ? 'font-weight-bold':'' }}">All Investment</span>
+                                    <span class="item-name {{ request()->path() == 'Admin/All-Investment' ? 'font-weight-bold':'' }}">Active Investment</span>
+                                </a>
+                            </li>
+
+                            <li class="item-name">
+                                <a href="{{ route('Daily.investment-installment') }}">
+                                    <i class="nav-icon i-Clock-4"></i>
+                                    <span class="item-name {{ request()->path() == 'Daily/investment-installment' ? 'font-weight-bold':'' }}">Daily Installment</span>
                                 </a>
                             </li>
                         </ul>

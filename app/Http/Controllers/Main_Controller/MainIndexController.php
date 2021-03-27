@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main_Controller;
 use App\Accounts\Capital;
 use App\Accounts\Cash;
 use App\Http\Controllers\Controller;
+use App\Loan_Investment\Investment;
 use App\Member_model\Member;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,39 @@ class MainIndexController extends Controller
         return view('Register_page.cash_view',compact('cashAtHand','cashs'));
     }
 
+    public function addNewInvestment(){
+        $cashDrBalance = Cash::all()->sum('dr');
+        $cashcrBalance = Cash::all()->sum('cr');
+        $cashAtHand = $cashDrBalance - $cashcrBalance;
 
+        $members = Member::where('status',"0")->get();
+
+        $investAmount = Investment::all()->sum('investment_amount');
+        $dwnpayment = Investment::all()->sum('downpayment');
+        $cashAtHand = $cashAtHand - 1000;
+        return view('Investment.add-new_investment',compact('cashAtHand', 'members'));
+    }
+
+
+    public function PendingInvestment()
+    {
+        $investments = Investment::where('status','0')->get();
+        return view('Investment.pending-investment',compact('investments'));
+    }
+
+    public function ActiveAllInvestment()
+    {
+        $investments = Investment::where('status','1')->get();
+        return view('Investment.active-investment',compact('investments'));
+    }
+
+    public function singelInvestment($investmentNo){
+        $investment = Investment::where('investment_no',$investmentNo)->first();
+        $guardians = $investment->member->guardians()->where('investment_for',$investmentNo)->get();
+        $installments = $investment->iRInstallments()->orderBy('id','asc')->get();
+        return view('Investment.singel-investment',compact('investment','guardians','installments'));
+
+    }
 
 
 }

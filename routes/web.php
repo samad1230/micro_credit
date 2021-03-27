@@ -35,9 +35,11 @@ Route::POST('/User/profile/Update','Main_Controller\HomeController@UserProficeUp
 Route::get('/Admin/All-Member', 'Main_Controller\MainIndexController@AllMember')->name('admin.all-members');
 Route::get('/Capital/Details', 'Main_Controller\MainIndexController@CapitalDetails')->name('Capital.details');
 Route::get('/Cash/Details', 'Main_Controller\MainIndexController@CashDetails')->name('Cash.details');
-Route::get('/Admin/Investment', 'Main_Controller\MainIndexController@AllMember')->name('admin.investment');
+Route::get('/Admin/Investment', 'Main_Controller\MainIndexController@addNewInvestment')->name('admin.investment');
+Route::get('/Pending/investment', 'Main_Controller\MainIndexController@PendingInvestment')->name('pending.investment');
+Route::get('/Admin/All-Investment', 'Main_Controller\MainIndexController@ActiveAllInvestment')->name('active.all-Investment');
 Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController@AllMember')->name('Daily.investment-installment');
-Route::get('/Admin/All-Investment', 'Main_Controller\MainIndexController@AllMember')->name('admin.all-Investment');
+Route::get('/Admin/single-investment/{investmentNo}', 'Main_Controller\MainIndexController@singelInvestment')->name('admin.single-investment');
 //======================== All index route ================================//
 
 
@@ -53,6 +55,7 @@ Route::post('expense-register','Accounts\ExpenseModelController@expenseRegister'
 
 //====================investment roure  ========================================
 
+Route::post('Add/Investment','Investment\InvestmentController@AddInvestment')->name('add.investment');
 //====================investment roure  ========================================
 
 Route::resource('Member','Member\MemberController');

@@ -2,6 +2,7 @@
 
 namespace App\Member_model;
 
+use App\Loan_Investment\Investment;
 use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
@@ -20,6 +21,12 @@ class Member extends Model
         return $this->hasOne('App\Member_model\Saving');
     }
 
+    public function Loans(){
+        return $this->hasMany(Investment::class);
+    }
 
 
+    public function guardians(){
+        return $this->hasMany(Guardian::class);
+    }
 }

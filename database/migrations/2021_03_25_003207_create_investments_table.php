@@ -17,7 +17,7 @@ class CreateInvestmentsTable extends Migration
             $table->id();
             $table->integer('member_id');
             $table->string('investment_no');
-            $table->string('investment_type_id');
+            $table->string('investment_type');
             $table->string('investment_behaviour');
             $table->float('investment_amount');
             $table->integer('installment_count');
