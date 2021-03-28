@@ -29,4 +29,11 @@ class Member extends Model
     public function guardians(){
         return $this->hasMany(Guardian::class);
     }
+
+    public function savingCollection(){
+        return $this->hasMany(SavingCollection::class);
+    }
+
+
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollectionsTable extends Migration
+class CreateSavingCollectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('saving_collections', function (Blueprint $table) {
             $table->id();
             $table->string('voucher_no')->nullable();
             $table->integer('member_id');
             $table->string('date');
-            $table->string('installment_amount')->default(0);
+            $table->string('amount');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('saving_collections');
     }
 }

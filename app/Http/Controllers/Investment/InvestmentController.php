@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Loan_Investment\GuardianImage;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentProduct;
+use App\Loan_Investment\InvestmentReturnInstallment;
 use App\Loan_Investment\Product;
 use App\Member_model\Guardian;
 use App\Member_model\Member;
+use App\Member_model\MemberAccount;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -123,7 +125,6 @@ class InvestmentController extends Controller
         $investment->disburse_date = date('Y-m-d',strtotime($request->disburse_date));
         $investment->save();
 
-
         // insert guardian
         for ($a = 0; $a < $dataCount; $a++){
             $guardianData = new Guardian();
@@ -182,4 +183,199 @@ class InvestmentController extends Controller
 
         return back()->with($notification);
     }
+
+
+    public function Investmentdata($id)
+    {
+        $invest = Investment::where('id',$id)->first();
+        $data = [
+            'id' => $invest->id,
+            'investment_amount' => $invest->investment_amount,
+            'member' => $invest->member->name,
+            'installment_count' => $invest->installment_count,
+            'downpayment' => $invest->downpayment,
+            'interest_rate' => $invest->interest_rate,
+            'installment_amount' => $invest->installment_amount,
+            'disburse_date' => $invest->disburse_date,
+            'investmentReturn' => $invest->investment_return_amount,
+            'investment_type' => $invest->investment_type,
+        ];
+        return response()->json($data);
+    }
+
+
+    public function InvestmentDataupdate(Request $request,$id)
+    {
+
+        $investmentAmount = $request->investment_amount;
+        $interestRate = str_replace('%','',$request->interest_rate);
+        if($request->has('downpayment') && $request->downpayment != null){
+            $investmentAmount = $request->investment_amount - $request->downpayment;
+        }
+        $interest = ($investmentAmount * $interestRate) / 100;
+        $investmentReturnAmount = $investmentAmount + round($interest);
+        $installmentAmount = $investmentReturnAmount / $request->installment_count;
+
+        $investment = Investment::find($id);
+        $investment->investment_amount = $request->investment_amount;
+        $investment->installment_count = $request->installment_count;
+        $investment->interest_rate = $interestRate;
+        if($request->has('downpayment')){
+            $investment->downpayment = $request->downpayment;
+        }
+        $investment->investment_return_amount = $investmentReturnAmount;
+        $investment->installment_amount = round($installmentAmount);
+        $investment->disburse_date = date('Y-m-d',strtotime($request->disburse_date));
+        $investment->save();
+
+
+        if($request->has('downpayment')){
+            if ($request->old_downpayment < $request->downpayment){
+               $down =  $request->downpayment - $request->old_downpayment;
+            }else{
+                $down = $request->downpayment;
+            }
+
+            $member = Member::where('id',$id)->first();
+
+            $cash = new Cash();
+            $cash->date = date('Y-m-d',time());
+            $cash->description = 'Capital Down Payment introduced by '.$member->name;
+            $cash->dr = number_format(intval($down),'2','.','');
+            $cash->save();
+        }
+
+
+
+        $cashDrBalance = Cash::all()->sum('dr');
+        $cashcrBalance = Cash::all()->sum('cr');
+        $cashAtHand = $cashDrBalance - $cashcrBalance;
+
+        if ($request->has('downpayment') && $request->downpayment != null) {
+            $investmentAmount = $request->investment_amount - $request->downpayment;
+        }
+
+        if ($request->disburse_status == "1") {
+            if ($investmentAmount > $cashAtHand) {
+                $notification = array(
+                    'message' => 'Don\'t have sufficient amount!',
+                    'alert-type' => 'error'
+                );
+
+                return back()->with($notification);
+            }
+
+            $investment = Investment::where('status',"0")
+                ->where('id',$id)
+                ->first();
+
+            for ($a = 0; $a <= $investment->installment_count; $a++) {
+                if ($a > 0) {
+                    $installments = InvestmentReturnInstallment::all();
+                    if (count($installments) == 0) {
+                        $voucherNo = 1111;
+                    } else {
+                        $lastInstallment = InvestmentReturnInstallment::orderBy('id', 'DESC')->first();
+                        $voucherNo = intval(str_replace('#', '', $lastInstallment->voucher_no)) + 1;
+                    }
+                    $investmentAmount = $investment->investment_amount;
+                    if ($investment->downpayment != null) {
+                        $investmentAmount = $investmentAmount - $investment->downpayment;
+                    }
+                    $interest = ($investmentAmount * $investment->interest_rate) / 100;
+                    $installmentProfit = $interest / $investment->installment_count;
+
+                    $duration = ($investment->investment_behaviour * $a) + 1;
+                    $timestamp = time() + $duration * 24 * 60 * 60;
+
+                    $installment = new InvestmentReturnInstallment();
+                    $installment->investment_id = $investment->id;
+                    $installment->date = date('Y-m-d', $timestamp);
+                    $installment->voucher_no = '#' . $voucherNo;
+                    $installment->installment_amount = $investment->installment_amount;
+                    $installment->rest_amount = $investment->installment_amount;
+                    $installment->installment_profit = $installmentProfit;
+                    $installment->status = false;
+                    $installment->save();
+                }
+            }
+
+            $memberaccount = MemberAccount::where('member_id',$member->id)->first();
+            $memberaccount->return_investment=$investmentAmount;
+            $memberaccount->rest_investment=$investmentAmount;
+            $memberaccount->save();
+
+            $investment->disburse_date = date('Y-m-d',time());
+            $investment->status = "1";
+            $investment->save();
+
+            $investmentAmount = $investment->investment_amount;
+            if($investment->downpayment != null){
+                $investmentAmount = $investment->investment_amount - $investment->downpayment;
+            }
+
+            $cash = new Cash();
+            $cash->date = date('Y-m-d',time());
+            $cash->description = 'Invest on '. $investment->member->name;
+            $cash->cr = number_format($investmentAmount,'2','.','');
+            $cash->save();
+
+            $memberaccount = new MemberAccount();
+            $memberaccount->save();
+
+        } // investment sucess
+
+
+        $notification = array(
+            'message' => 'Investment info has been saved successfully!',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
+
+    }
+
+
+
+    public function GuargianUpdate(Request $request,$id)
+    {
+
+        $guardianData = Guardian::find($id);
+        $guardianData->name = $request->name;
+        $guardianData->father_name = $request->father_name;
+        $guardianData->phone = $request->phone;
+        $guardianData->nid_no = $request->nid_no;
+        $guardianData->relational_status = $request->relation;
+        $guardianData->present_address = $request->present_address;
+        $guardianData->permanent_address = $request->permanent_address;
+        $guardianData->save();
+
+        $model_common = new CommonModel();
+        $ImgName =  $model_common->ImageName();
+
+        $gurdian_nuid = GuardianImage::where('guardian_id',$id)->first();
+        $nuidimage = $request->nid_image;
+
+        if($request->hasFile('nid_image')){
+            if ($gurdian_nuid->image !=null){
+                $path = 'Media/Guardian_NUID/' . $gurdian_nuid->image;
+                unlink($path);
+            }
+            $nuidimageFilename = time() . $ImgName . $nuidimage->getClientOriginalExtension();
+            Image::make($nuidimage->getRealPath())->resize(450, 300)->save(public_path('/Media/Guardian_NUID/'.$nuidimageFilename));
+            $gurdian_nuid->image=$nuidimageFilename;
+        }
+        $gurdian_nuid->nid_no = $request->nid_no;
+        $gurdian_nuid->save();
+
+        $notification = array(
+            'message' => 'Guardian info has been saved successfully!',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
+
+    }
+
+
 }

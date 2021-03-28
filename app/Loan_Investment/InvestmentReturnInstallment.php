@@ -9,4 +9,8 @@ class InvestmentReturnInstallment extends Model
     protected $fillable = [
         'investment_id','date','voucher_no','installment_amount','collection_amount','rest_amount','installment_profit','status'
     ];
+
+    public function investment(){
+        return $this->belongsTo(Investment::class);
+    }
 }

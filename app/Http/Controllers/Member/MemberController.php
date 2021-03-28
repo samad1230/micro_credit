@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Admin_model\CommonModel;
 use App\Http\Controllers\Controller;
 use App\Member_model\Member;
+use App\Member_model\MemberAccount;
 use App\Member_model\NidImage;
 use App\Member_model\Saving;
 use Carbon\Carbon;
@@ -116,6 +117,11 @@ class MemberController extends Controller
         $saving->savings_no=$SavingAcno;
         $saving->opening_date=$date;
         $saving->save();
+
+        $memberaccount = new MemberAccount();
+        $memberaccount->member_id=$memberid;
+        $memberaccount->saving_id=$SavingAcno;
+        $memberaccount->save();
 
         $notification = array(
             'message' => 'Member has been created successfully!',

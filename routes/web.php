@@ -38,8 +38,9 @@ Route::get('/Cash/Details', 'Main_Controller\MainIndexController@CashDetails')->
 Route::get('/Admin/Investment', 'Main_Controller\MainIndexController@addNewInvestment')->name('admin.investment');
 Route::get('/Pending/investment', 'Main_Controller\MainIndexController@PendingInvestment')->name('pending.investment');
 Route::get('/Admin/All-Investment', 'Main_Controller\MainIndexController@ActiveAllInvestment')->name('active.all-Investment');
-Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController@AllMember')->name('Daily.investment-installment');
+Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController@DailyInstallment')->name('Daily.investment-installment');
 Route::get('/Admin/single-investment/{investmentNo}', 'Main_Controller\MainIndexController@singelInvestment')->name('admin.single-investment');
+Route::get('/Guardian/View/{id}', 'Main_Controller\MainIndexController@GuardianView')->name('guardian.view');
 //======================== All index route ================================//
 
 
@@ -56,6 +57,9 @@ Route::post('expense-register','Accounts\ExpenseModelController@expenseRegister'
 //====================investment roure  ========================================
 
 Route::post('Add/Investment','Investment\InvestmentController@AddInvestment')->name('add.investment');
+Route::get('/investment/update/{id}','Investment\InvestmentController@Investmentdata');
+Route::put('/Investment_Data_update/{id}','Investment\InvestmentController@InvestmentDataupdate');
+Route::put('/Guardian/Update/{id}','Investment\InvestmentController@GuargianUpdate')->name('guardian.update');
 //====================investment roure  ========================================
 
 Route::resource('Member','Member\MemberController');

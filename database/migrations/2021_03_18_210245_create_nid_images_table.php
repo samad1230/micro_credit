@@ -16,7 +16,7 @@ class CreateNidImagesTable extends Migration
         Schema::create('nid_images', function (Blueprint $table) {
             $table->id();
             $table->integer('member_id');
-            $table->integer('nuid_no');
+            $table->string('nuid_no');
             $table->string('nuid_image')->nullable();
             $table->string('member_image')->nullable();
             $table->timestamps();

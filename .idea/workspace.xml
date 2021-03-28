@@ -20,24 +20,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Loan_Investment/GuardianImage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_27_230012_create_guardian_images_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16168695151616869515nei1.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16168696531616869653kal8.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Investment/active-investment.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Investment/pending-investment.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Member_model/SavingCollection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_03_28_191810_create_saving_collections_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169316581616931658jz3y.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169330471616933047ey9c.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161693569716169356978olx.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/161693126216169312624bq0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16169313371616931337o3pj.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16169315851616931585fc95.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/161693295516169329553fcw.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/161693126216169312624bq0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16169313371616931337o3pj.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16169315851616931585fc95.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/161693295516169329553fcw.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/guargian-view.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Accounts/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accounts/Collection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Loan_Investment/Investment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Loan_Investment/Investment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Loan_Investment/InvestmentReturnInstallment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Loan_Investment/InvestmentReturnInstallment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Member_model/Guardian.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Guardian.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003207_create_investments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003207_create_investments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/Saving.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Saving.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210245_create_nid_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210245_create_nid_images_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210802_create_collections_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210802_create_collections_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16168695151616869515nei1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16168696531616869653kal8.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16166610351616661035cwmi.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16166610481616661048znqd.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16166805621616680562j7pe.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16166567341616656734zdno.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16166607971616660797xgi4.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16166805621616680562j7pe.PIB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/user_profile/1616613266oimje1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Investment/active-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/active-investment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Investment/pending-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/pending-investment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +230,8 @@
       <workItem from="1616651399005" duration="21080000" />
       <workItem from="1616744101546" duration="9627000" />
       <workItem from="1616841846171" duration="1191000" />
-      <workItem from="1616863110794" duration="11286000" />
+      <workItem from="1616863110794" duration="11373000" />
+      <workItem from="1616911247752" duration="24617000" />
     </task>
     <servers />
   </component>
@@ -232,14 +258,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616597675127" />
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616873562864">
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616939673315">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616873562864" />
-    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1616866664323">
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616939673315" />
+    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1616932042702">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616866664323" />
+    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616932042702" />
     <state x="297" y="151" key="run.anything.popup" timestamp="1616864548468">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

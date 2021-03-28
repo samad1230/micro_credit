@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Accounts\Cash;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentReturnInstallment;
+use App\Member_model\MemberAccount;
 use Illuminate\Console\Command;
 
 class CheckActivity extends Command
@@ -93,6 +94,11 @@ class CheckActivity extends Command
                 if($investment->downpayment != null){
                     $investmentAmount = $investment->investment_amount - $investment->downpayment;
                 }
+
+                $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
+                $memberaccount->return_investment=$investmentAmount;
+                $memberaccount->rest_investment=$investmentAmount;
+                $memberaccount->save();
 
                 $cash = new Cash();
                 $cash->date = date('Y-m-d',time());

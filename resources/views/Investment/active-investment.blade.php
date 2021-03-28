@@ -38,7 +38,7 @@
                                     <td>{{ date('d-m-Y',strtotime($investment->sanction_date)) }}</td>
                                     <td>{{ $investment->investment_no }}</td>
                                     <td>{{ date('d-m-Y',strtotime($investment->disburse_date)) }}</td>
-                                    <td>{{ number_format($investment->investment_amount,'2','.',',') }}</td>
+                                    <td>{{ number_format($investment->investment_amount - $investment->downpayment,'2','.',',') }}</td>
                                     <td>{{ number_format($investment->interest_rate,'2','.',',') .'%' }}</td>
                                     <td>{{ number_format($investment->investment_return_amount,'2','.',',') }}</td>
                                     <td>{{ $investment->status ? ucwords('active'):ucwords('dactive') }}</td>

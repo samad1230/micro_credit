@@ -76,7 +76,9 @@
                                                 <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('permanent address: ').'</span>'.$guardian->permanent_address !!}</li>
                                                 <br>
                                                 <li>
-                                                    <button type="button" class="btn btn-primary viewGuardianNidBtn" id="{{ $guardian->id }}">View Nid Image</button>
+                                                    <a href="{{ route('guardian.view',$guardian->id) }}">
+                                                        <button type="button" class="btn btn-info btn-sm">{{ ucwords('guardian view') }}</button>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -143,6 +145,13 @@
                         attributes: {
                             placeholder: "BTD",
                             type: "number",
+                        },
+                    },
+                    content: {
+                        element: "input",
+                        attributes: {
+                            placeholder: "fd",
+                            type: "text",
                         },
                     },
                     buttons: {

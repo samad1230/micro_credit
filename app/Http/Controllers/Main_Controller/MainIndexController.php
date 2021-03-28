@@ -6,7 +6,10 @@ use App\Accounts\Capital;
 use App\Accounts\Cash;
 use App\Http\Controllers\Controller;
 use App\Loan_Investment\Investment;
+use App\Loan_Investment\InvestmentReturnInstallment;
+use App\Member_model\Guardian;
 use App\Member_model\Member;
+use App\Member_model\SavingCollection;
 use Illuminate\Http\Request;
 
 class MainIndexController extends Controller
@@ -55,8 +58,11 @@ class MainIndexController extends Controller
 
     public function PendingInvestment()
     {
+        $cashDrBalance = Cash::all()->sum('dr');
+        $cashcrBalance = Cash::all()->sum('cr');
+        $cashAtHand = $cashDrBalance - $cashcrBalance;
         $investments = Investment::where('status','0')->get();
-        return view('Investment.pending-investment',compact('investments'));
+        return view('Investment.pending-investment',compact('investments','cashAtHand'));
     }
 
     public function ActiveAllInvestment()
@@ -71,6 +77,22 @@ class MainIndexController extends Controller
         $installments = $investment->iRInstallments()->orderBy('id','asc')->get();
         return view('Investment.singel-investment',compact('investment','guardians','installments'));
 
+    }
+
+    public function GuardianView($id)
+    {
+        $guardians = Guardian::where('id',$id)->first();
+        return view('Investment.guargian-view',compact('guardians'));
+    }
+
+    public function DailyInstallment()
+    {
+        $todayDate = time();
+        $installments = InvestmentReturnInstallment::where('status',"0")
+            ->where('date','<=',date('Y-m-d',$todayDate))
+            ->get();
+
+        return view('Investment.daily-investment_view',compact('installments'));
     }
 
 

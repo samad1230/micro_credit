@@ -14,4 +14,8 @@ class Saving extends Model
     {
         return $this->belongsTo('App\Member_model\Member');
     }
+
+    public function savingCollection(){
+        return $this->hasMany(SavingCollection::class);
+    }
 }

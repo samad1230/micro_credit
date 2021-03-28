@@ -17,6 +17,6 @@ class Guardian extends Model
     }
 
     public function guardianimages(){
-        return $this->hasMany(GuardianImage::class);
+        return $this->hasOne(GuardianImage::class);
     }
 }
