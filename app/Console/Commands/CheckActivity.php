@@ -82,7 +82,7 @@ class CheckActivity extends Command
                         $installment->installment_amount = $investment->installment_amount;
                         $installment->rest_amount = $investment->installment_amount;
                         $installment->installment_profit = $installmentProfit;
-                        $installment->status = false;
+                        $installment->status = "0";
                         $installment->save();
                     }
                 }

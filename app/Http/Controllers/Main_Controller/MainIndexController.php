@@ -7,9 +7,11 @@ use App\Accounts\Cash;
 use App\Http\Controllers\Controller;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentReturnInstallment;
+use App\Member_model\Collectionsaving;
 use App\Member_model\Guardian;
 use App\Member_model\Member;
-use App\Member_model\SavingCollection;
+
+use App\Member_model\SavingAccount;
 use Illuminate\Http\Request;
 
 class MainIndexController extends Controller
@@ -39,7 +41,7 @@ class MainIndexController extends Controller
         $cashcrBalance = Cash::all()->sum('cr');
         $cashAtHand = $cashDrBalance - $cashcrBalance;
         $cashs = Cash::orderBy('id','DESC')->paginate(15);
-        return view('Register_page.cash_view',compact('cashAtHand','cashs'));
+        return view('Register_page.cash_view',compact('cashAtHand','cashs','cashcrBalance','cashDrBalance'));
     }
 
     public function addNewInvestment(){
@@ -75,7 +77,8 @@ class MainIndexController extends Controller
         $investment = Investment::where('investment_no',$investmentNo)->first();
         $guardians = $investment->member->guardians()->where('investment_for',$investmentNo)->get();
         $installments = $investment->iRInstallments()->orderBy('id','asc')->get();
-        return view('Investment.singel-investment',compact('investment','guardians','installments'));
+        $installmentlastdate = $investment->iRInstallments()->orderBy('id','DESC')->first();
+        return view('Investment.singel-investment',compact('investment','guardians','installments','installmentlastdate'));
 
     }
 
@@ -88,11 +91,31 @@ class MainIndexController extends Controller
     public function DailyInstallment()
     {
         $todayDate = time();
-        $installments = InvestmentReturnInstallment::where('status',"0")
-            ->where('date','<=',date('Y-m-d',$todayDate))
-            ->get();
+        $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
+            ->where('status','!=',"3")
+            ->orderBy('date','DESC')->get();
 
-        return view('Investment.daily-investment_view',compact('installments'));
+        $today_installment_due = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
+            ->where('status','!=','1')
+            ->sum('installment_amount');
+
+        $today_installment_sum = InvestmentReturnInstallment::where('date','=',date('Y-m-d',$todayDate))->sum('installment_amount');
+
+        $today_collention_sum = InvestmentReturnInstallment::where('date','=',date('Y-m-d',$todayDate))->sum('collection_amount');
+
+        $today_saving_sum = SavingAccount::where('date','=',date('Y-m-d',$todayDate))
+            ->sum('amount');
+
+
+        return view('Investment.daily-investment_view',compact('installments','today_installment_due','today_installment_sum','today_collention_sum','today_saving_sum'));
+    }
+
+
+    public function InstallmentAmountdata($id)
+    {
+        $newid = "#".$id;
+        $data = InvestmentReturnInstallment::where('voucher_no',$newid)->first();
+        return response()->json($data);
     }
 
 

@@ -30,10 +30,24 @@ class Member extends Model
         return $this->hasMany(Guardian::class);
     }
 
-    public function savingCollection(){
-        return $this->hasMany(SavingCollection::class);
+    public function memberAccount()
+    {
+        return $this->hasOne('App\Member_model\MemberAccount');
     }
 
+    public function accounts()
+    {
+        return $this->hasMany('App\Collection\Accounts');
+    }
 
+    public function saveingac()
+    {
+        return $this->hasOne('App\Member_model\Saving');
+    }
+
+    public function savingAccounts()
+    {
+        return $this->hasMany('App\Member_model\SavingAccount');
+    }
 
 }

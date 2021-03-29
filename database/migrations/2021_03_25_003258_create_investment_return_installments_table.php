@@ -22,7 +22,7 @@ class CreateInvestmentReturnInstallmentsTable extends Migration
             $table->float('collection_amount')->nullable();
             $table->float('rest_amount');
             $table->float('installment_profit');
-            $table->boolean('status')->default(true);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

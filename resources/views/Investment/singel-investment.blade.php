@@ -30,6 +30,9 @@
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('Investment Status: ').'</span>'!!}{{ $investment->status ? ucwords('active'):ucwords('dactive') }}</li>
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('present address: ').'</span>'.$investment->member->present_address !!}</li>
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('permanent address: ').'</span>'.$investment->member->permanent_address !!}</li>
+                                    <br>
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords('investment end date : ').$installmentlastdate->date .'</span>' !!}</li>
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' end investment amount : ').$installmentlastdate->rest_amount.'</span>' !!}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
@@ -130,69 +133,9 @@
 @endsection
 
 @section('page-script')
-    {{--    <script src="{{ asset('assets/js/scripts/form.validation.script.min.js') }}"></script>--}}
+
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script !src="">
-        $(function () {
-            $('#allInstallmentsTable').DataTable();
+    <script src="{{ asset('js/payment_saving.js') }}"></script>
 
-            $('.collectionBtn').on('click',function () {
-                var voucherNo = $(this).attr('id');
-                swal({
-                    content: {
-                        element: "input",
-                        attributes: {
-                            placeholder: "BTD",
-                            type: "number",
-                        },
-                    },
-                    content: {
-                        element: "input",
-                        attributes: {
-                            placeholder: "fd",
-                            type: "text",
-                        },
-                    },
-                    buttons: {
-                        cancel: 'Not Now',
-                        confirm: 'Pay Now'
-                    },
-                })
-                    .then((value) => {
-                        if (value) {
-                            $.ajaxSetup({
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                }
-                            });
-                            $.ajax({
-                                type: 'post',
-                                url: '/admin/investment-installment',
-                                data: {
-                                    "collection":value,
-                                    "voucher_no":voucherNo,
-                                },
-                                success:function (data) {
-                                    console.log(data);
-                                    if(data == 'success'){
-                                        swal("Payment has been taken!",{
-                                            icon: "success",
-                                        });
-                                        location.reload();
-                                    }else {
-                                        swal("Invalid Entry!",{
-                                            icon: "error",
-                                        });
-                                    }
-
-                                }
-                            })
-                        } else {
-                            swal("Please make payment as early you can!");
-                        }
-                    });
-            });
-        })
-    </script>
 @endsection

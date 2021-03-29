@@ -41,6 +41,7 @@ Route::get('/Admin/All-Investment', 'Main_Controller\MainIndexController@ActiveA
 Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController@DailyInstallment')->name('Daily.investment-installment');
 Route::get('/Admin/single-investment/{investmentNo}', 'Main_Controller\MainIndexController@singelInvestment')->name('admin.single-investment');
 Route::get('/Guardian/View/{id}', 'Main_Controller\MainIndexController@GuardianView')->name('guardian.view');
+Route::get('/Penalty/Installment/amount/{id}', 'Main_Controller\MainIndexController@InstallmentAmountdata');
 //======================== All index route ================================//
 
 
@@ -61,6 +62,11 @@ Route::get('/investment/update/{id}','Investment\InvestmentController@Investment
 Route::put('/Investment_Data_update/{id}','Investment\InvestmentController@InvestmentDataupdate');
 Route::put('/Guardian/Update/{id}','Investment\InvestmentController@GuargianUpdate')->name('guardian.update');
 //====================investment roure  ========================================
+
+//===================== installment retur======================================
+Route::post('/Investment/Return-Collection','Investment\InvestmentReturnInstallmentController@installmentInsert');
+Route::post('/Member-saving_deposit','Investment\InvestmentReturnInstallmentController@SavingInstallment');
+//===================== installment retur======================================
 
 Route::resource('Member','Member\MemberController');
 Route::resource('Registers','Register\RegisterController');

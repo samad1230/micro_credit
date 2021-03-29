@@ -18,4 +18,5 @@ class Investment extends Model
     public function iRInstallments(){
         return $this->hasMany(InvestmentReturnInstallment::class);
     }
+
 }

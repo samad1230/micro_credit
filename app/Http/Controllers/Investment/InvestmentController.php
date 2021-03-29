@@ -9,7 +9,6 @@ use App\Loan_Investment\GuardianImage;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentProduct;
 use App\Loan_Investment\InvestmentReturnInstallment;
-use App\Loan_Investment\Product;
 use App\Member_model\Guardian;
 use App\Member_model\Member;
 use App\Member_model\MemberAccount;
@@ -295,14 +294,15 @@ class InvestmentController extends Controller
                     $installment->installment_amount = $investment->installment_amount;
                     $installment->rest_amount = $investment->installment_amount;
                     $installment->installment_profit = $installmentProfit;
-                    $installment->status = false;
+                    $installment->status = "0";
                     $installment->save();
                 }
             }
 
-            $memberaccount = MemberAccount::where('member_id',$member->id)->first();
-            $memberaccount->return_investment=$investmentAmount;
-            $memberaccount->rest_investment=$investmentAmount;
+            $memberac = MemberAccount::where('member_id',$id)->first();
+            $memberaccount = MemberAccount::find($memberac->id);
+            $memberaccount->return_investment=$investmentReturnAmount;
+            $memberaccount->rest_investment=$investmentReturnAmount;
             $memberaccount->save();
 
             $investment->disburse_date = date('Y-m-d',time());
@@ -319,9 +319,6 @@ class InvestmentController extends Controller
             $cash->description = 'Invest on '. $investment->member->name;
             $cash->cr = number_format($investmentAmount,'2','.','');
             $cash->save();
-
-            $memberaccount = new MemberAccount();
-            $memberaccount->save();
 
         } // investment sucess
 

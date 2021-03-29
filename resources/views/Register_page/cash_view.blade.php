@@ -10,10 +10,13 @@
         <div class="row mb-5">
             <div class="col-md-12 mx-auto">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header  ">
                         <div class="card-title">
                             <span>{{ ucwords('cash blanch details') }}</span>
-                            <span class="float-right p-3 text-white {{ is_int(strpos($cashAtHand,'-')) != true ? 'bg-success' : 'bg-danger' }}" style="border-radius: 10px; margin-right: 10px;">{!! ucwords('cash in hand : ').number_format($cashAtHand,'2','.',',') !!}</span>
+                            <span class="float-right p-3 text-white {{ is_int(strpos($cashAtHand,'-')) != true ? 'bg-primary' : 'bg-danger' }}" style="border-radius: 10px; margin-right: 10px;">{!! ucwords('cash : ').number_format($cashAtHand,'2','.',',') !!}</span>
+                            <span class="float-right p-3 text-white {{ is_int(strpos($cashcrBalance,'-')) != true ? 'bg-warning' : 'bg-danger' }}" style="border-radius: 10px; margin-right: 10px;">{!! ucwords('Credit : ').number_format($cashcrBalance,'2','.',',') !!}</span>
+
+                            <span class="float-right p-3 text-white {{ is_int(strpos($cashDrBalance,'-')) != true ? 'bg-success' : 'bg-danger' }}" style="border-radius: 10px;margin-right: 10px;">{!! ucwords('debit : ').number_format($cashDrBalance,'2','.',',') !!}</span>
 
                         </div>
                     </div>
