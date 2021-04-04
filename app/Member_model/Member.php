@@ -50,4 +50,11 @@ class Member extends Model
         return $this->hasMany('App\Member_model\SavingAccount');
     }
 
+    public function penaltys()
+    {
+        return $this->hasMany('App\Accounts\Penalty');
+    }
+
+
+
 }

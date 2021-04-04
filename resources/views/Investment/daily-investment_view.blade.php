@@ -45,6 +45,9 @@
                                 @php
                                     $savingac = \App\Member_model\SavingAccount::where('voucher_no',$installment->voucher_no)->first();
 
+                                    $penalty = \App\Accounts\Penalty::where('voucher_no',$installment->voucher_no)->first();
+                                    $todayDate = time();
+                                   $today = date('Y-m-d',$todayDate);
                                 @endphp
                                 <tr>
                                     <th>{{ $sl}}</th>
@@ -56,8 +59,13 @@
                                     <td>
                                         @if($installment->collection_amount != null || $installment->status !='0')
                                             {{ number_format($installment->collection_amount,'2','.',',') }}
-                                        @else
+                                        @elseif(date('d-m-Y',strtotime($installment->date)) ==$today)
                                             <button type="button" class="btn btn-warning btn-sm collectionBtn" id="{{ $installment->voucher_no }}">Collect</button>
+                                        @elseif($installment->status =='2')
+
+                                            {{ number_format($penalty->penalty,'2','.',',') }}
+                                        @else
+                                            <button type="button" class="btn btn-danger btn-sm penaltyfine" id="{{ $installment->voucher_no }}">{{ucwords('penalty')}}</button>
                                         @endif
                                     </td>
                                     <td>
@@ -68,14 +76,15 @@
                                         @endif
                                     </td>
                                     <td>{{ number_format($installment->rest_amount,'2','.',',') }}</td>
-{{--                                    <td>{!! $installment->status  ? '<b class="text-success">'.strtoupper('paid').'</b>':'<b class="text-danger">'.strtoupper('due').'</b>' !!}</td>--}}
                                     <td>
-                                        @if($installment->status =='1')
-                                           {!! '<b class="text-success">'.strtoupper('paid').'</b>' !!}
+                                        @if($installment->status =='1' && $installment->rest_amount=='0' )
+                                            {!! '<b class="text-success">'.strtoupper('paid').'</b>' !!}
                                         @elseif($installment->status =='0')
                                             {!! '<b class="text-danger">'.strtoupper('due').'</b>' !!}
+                                        @elseif($installment->status =='1' && $installment->rest_amount !='0')
+                                            {!! '<b class="text-primary">'.strtoupper('unpaid').'</b>' !!}
                                         @else
-                                            <button type="button" class="btn btn-danger btn-sm penaltyfine" id="{{ $installment->voucher_no }}">{{ucwords('penalty')}}</button>
+                                            {!! '<b class="text-danger">'.strtoupper('penalty add').'</b>' !!}
                                         @endif
                                     </td>
                                 </tr>
@@ -87,7 +96,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <div class="modal fade" id="Penaltyupdate" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog model-sm" role="document">
@@ -112,20 +120,20 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class=" " for="Showroom Name">Supplier Name</label>
+                                    <label class=" " for="">Member Name</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" name="name" class="form-control" placeholder="Supplier Name" id="supplier_nameedit">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_name" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class=" " for="Address">Address</label>
+                                    <label class=" " for="">Voucher No</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" name="address" class="form-control" id="address_edit" placeholder="Address" >
+                                    <input type="text" name="voucher" class="form-control" id="voucher_no" placeholder="Voucher No" readonly>
                                 </div>
                             </div>
                         </div>
@@ -133,20 +141,10 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="" for="Contact">Contact</label>
+                                    <label class="" for="Contact">Penalty Amount</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="number" name="mobile" class="form-control" id="mobile_edit" placeholder="Contact" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="" for="Contact">Previous Ledger</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="number" name="previus_ledger" class="form-control"  id="ledger_edit">
+                                    <input type="number" name="PenaltyAmount" class="form-control" id="" placeholder="Penalty Amount" required="">
                                 </div>
                             </div>
                         </div>
@@ -179,14 +177,11 @@
                 url:'/Penalty/Installment/amount/'+voucher,
 
                 success: function (data) {
-                    console.log(data);
-                    // $("#ledger_edit").val(data.accounts);
-                    // $("#address_edit").val(data.address);
-                    // $("#mobile_edit").val(data.mobile);
-                    // $("#supplier_nameedit").val(data.suplier_name);
-                    // $("#accounts_id").val(data.account_id);
-                    //
-                    // $('.editsupplier_data').attr('action', '/supplier/'+supplierid);
+
+                    $("#voucher_no").val(data.voucher_no);
+                    $("#member_name").val(data.membername);
+
+                    $('.editsupplier_data').attr('action', '/PanaltiInsert/'+voucher);
                 }
             });
             $("#Penaltyupdate").modal('show');

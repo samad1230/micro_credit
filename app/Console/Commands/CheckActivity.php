@@ -95,10 +95,21 @@ class CheckActivity extends Command
                     $investmentAmount = $investment->investment_amount - $investment->downpayment;
                 }
 
-                $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
-                $memberaccount->return_investment=$investmentAmount;
-                $memberaccount->rest_investment=$investmentAmount;
-                $memberaccount->save();
+                $memberac = MemberAccount::where('member_id',$investment->member->id)->first();
+
+                if ($memberac==null){
+                    $memberaccount = new MemberAccount();
+                    $memberaccount->member_id=$investment->member->id;
+                    $memberaccount->return_investment=$investmentAmount;
+                    $memberaccount->rest_investment=$investmentAmount;
+                    $memberaccount->save();
+
+                }else{
+                    $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
+                    $memberaccount->return_investment=$investmentAmount;
+                    $memberaccount->rest_investment=$investmentAmount;
+                    $memberaccount->save();
+                }
 
                 $cash = new Cash();
                 $cash->date = date('Y-m-d',time());

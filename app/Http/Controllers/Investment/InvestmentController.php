@@ -211,6 +211,7 @@ class InvestmentController extends Controller
         if($request->has('downpayment') && $request->downpayment != null){
             $investmentAmount = $request->investment_amount - $request->downpayment;
         }
+
         $interest = ($investmentAmount * $interestRate) / 100;
         $investmentReturnAmount = $investmentAmount + round($interest);
         $installmentAmount = $investmentReturnAmount / $request->installment_count;
@@ -299,11 +300,25 @@ class InvestmentController extends Controller
                 }
             }
 
-            $memberac = MemberAccount::where('member_id',$id)->first();
-            $memberaccount = MemberAccount::find($memberac->id);
-            $memberaccount->return_investment=$investmentReturnAmount;
-            $memberaccount->rest_investment=$investmentReturnAmount;
-            $memberaccount->save();
+                $memberac = MemberAccount::where('member_id',$id)->first();
+           // $memberaccount = MemberAccount::find($memberac->id);
+            if ($memberac==null){
+                $memberaccount = new MemberAccount();
+                $memberaccount->member_id=$id;
+                $memberaccount->return_investment=$investmentReturnAmount;
+                $memberaccount->rest_investment=$investmentReturnAmount;
+                $memberaccount->save();
+
+            }else{
+                $interest = ($investmentAmount * $interestRate) / 100;
+                $investmentReturnAmount = $investmentAmount + round($interest);
+
+                $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
+                $memberaccount->return_investment=$investmentReturnAmount;
+                $memberaccount->rest_investment=$investmentReturnAmount;
+                $memberaccount->save();
+            }
+
 
             $investment->disburse_date = date('Y-m-d',time());
             $investment->status = "1";

@@ -30,9 +30,14 @@
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('Investment Status: ').'</span>'!!}{{ $investment->status ? ucwords('active'):ucwords('dactive') }}</li>
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('present address: ').'</span>'.$investment->member->present_address !!}</li>
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('permanent address: ').'</span>'.$investment->member->permanent_address !!}</li>
-                                    <br>
+                                    <---------------------->
                                     <li>{!! '<span class="font-weight-bold text-danger">'.ucwords('investment end date : ').$installmentlastdate->date .'</span>' !!}</li>
-                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' end investment amount : ').$installmentlastdate->rest_amount.'</span>' !!}</li>
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' collection amount : ').$collection_amount.'</span>' !!}</li>
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' penalty amount : ').$panaltyBalance.'</span>' !!}</li>
+                                   @php
+                                       $lastamount = $restamount + $panaltyBalance;
+                                   @endphp
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' last investment amount : '). $lastamount.'</span>' !!}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
@@ -107,19 +112,39 @@
                                     </thead>
                                     <tbody>
                                     @foreach($installments as $installment)
+                                        @php
+
+                                            $todayDate = time();
+                                            $today = date('Y-m-d',$todayDate);
+                                        @endphp
                                         <tr>
                                             <td>{{ $installment->voucher_no }}</td>
                                             <td>{{ date('d-m-y',strtotime($installment->date)) }}</td>
                                             <td>{{ number_format($installment->installment_amount,'2','.',',') }}</td>
                                             <td>
-                                                @if($installment->collection_amount != null || $installment->status)
+                                                @if($installment->collection_amount != null || $installment->status !='0')
                                                     {{ number_format($installment->collection_amount,'2','.',',') }}
+                                                @elseif(date('d-m-Y',strtotime($installment->date)) ==$today)
+                                                    <button type="button" class="btn btn-warning btn-sm collectionBtn" id="{{ $installment->voucher_no }}">Collect</button>
+                                                @elseif($installment->status =='2')
+
+                                                    {{ number_format($penalty->penalty,'2','.',',') }}
                                                 @else
                                                     <button type="button" class="btn btn-warning btn-sm collectionBtn" id="{{ $installment->voucher_no }}">Collect</button>
                                                 @endif
                                             </td>
                                             <td>{{ number_format($installment->rest_amount,'2','.',',') }}</td>
-                                            <td>{!! $installment->status ? '<b class="text-success">'.strtoupper('payed').'</b>':'<b class="text-danger">'.strtoupper('due').'</b>' !!}</td>
+                                            <td>
+                                                @if($installment->status =='1' && $installment->rest_amount=='0' )
+                                                    {!! '<b class="text-success">'.strtoupper('paid').'</b>' !!}
+                                                @elseif($installment->status =='0')
+                                                    {!! '<b class="text-danger">'.strtoupper('due').'</b>' !!}
+                                                @elseif($installment->status =='1' && $installment->rest_amount !='0')
+                                                    {!! '<b class="text-primary">'.strtoupper('unpaid').'</b>' !!}
+                                                @else
+                                                    {!! '<b class="text-danger">'.strtoupper('penalty add').'</b>' !!}
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

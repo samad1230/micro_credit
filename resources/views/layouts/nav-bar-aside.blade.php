@@ -54,12 +54,12 @@
                         ?>
 
                     <li class="Ul_li--hover">
-                        <a class="has-arrow" href="#" {!! request()->path() == 'Member' || request()->path() == 'Member' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Member' || request()->path() == 'Member' ||request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
                             <i class="i-Love-User text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Members</span>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member'|| request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Members</span>
                         </a>
 
-                        <ul class="mm-collapse {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' || strpos(request()->path(),'member') != false ? 'mm-show':''}}">
+                        <ul class="mm-collapse {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' ||request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'mm-show':''}}">
                             <li class="item-name">
                                 <a href="{{ route('Member.index') }}">
                                     <i class="nav-icon i-Add-User"></i>
@@ -71,6 +71,12 @@
                                 <a href="{{ route('admin.all-members') }}">
                                     <i class="nav-icon i-Checked-User"></i>
                                     <span class="item-name {{ request()->path() == 'Admin/All-Member' ? 'font-weight-bold':''}}">All Member</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('member.accounts') }}">
+                                    <i class="nav-icon i-Checked-User"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Accounts' ? 'font-weight-bold':''}}">Member Accounts</span>
                                 </a>
                             </li>
                         </ul>
@@ -113,6 +119,23 @@
                     </li>
 
 
+
+
+                    <li class="Ul_li--hover">
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Member/Savings' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                            <i class="i-Wallet text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member/Savings' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Savings</span>
+                        </a>
+                        <ul class="mm-collapse {{ request()->path() == 'Member/Savings' || strpos(request()->path(),'saving') != false ? 'mm-show':'' }}">
+                            <li class="item-name">
+                                <a href="{{ route('member.saving-account') }}">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Savings' ? 'font-weight-bold':'' }}">Member Savings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="Ul_li--hover">
                         <a class="has-arrow" href="javascript:void (0)" >
                             <i class="i-Coins text-20 mr-2 text-muted"></i>
@@ -136,28 +159,6 @@
                             <li class="nav-item">
                                 <a href="javascript:void (0)">
                                     <i class="nav-icon i-Receipt-3"></i>
-                                    <span class="item-name">View Details</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="Ul_li--hover">
-                        <a class="has-arrow" href="javascript:void (0)">
-                            <i class="i-Wallet text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted">Savings</span>
-                        </a>
-                        <ul class="mm-collapse">
-                            <li class="item-name">
-                                <a href="javascript:void (0)">
-                                    <i class="nav-icon i-Bar-Chart-2"></i>
-                                    <span class="item-name">View in Chart</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="javascript:void (0)">
-                                    <i class="nav-icon i-Receipt-4"></i>
                                     <span class="item-name">View Details</span>
                                 </a>
                             </li>

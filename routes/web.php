@@ -42,6 +42,9 @@ Route::get('/Daily/investment-installment', 'Main_Controller\MainIndexController
 Route::get('/Admin/single-investment/{investmentNo}', 'Main_Controller\MainIndexController@singelInvestment')->name('admin.single-investment');
 Route::get('/Guardian/View/{id}', 'Main_Controller\MainIndexController@GuardianView')->name('guardian.view');
 Route::get('/Penalty/Installment/amount/{id}', 'Main_Controller\MainIndexController@InstallmentAmountdata');
+Route::get('/Member/Savings', 'Main_Controller\MainIndexController@MemberSavingAc')->name('member.saving-account');
+Route::get('/Member/Savings/Details/{id}', 'Main_Controller\MainIndexController@MemberSavingAccount_details')->name('saving.show');
+Route::get('/Member/Accounts', 'Main_Controller\MainIndexController@AccountForMember')->name('member.accounts');
 //======================== All index route ================================//
 
 
@@ -71,4 +74,10 @@ Route::post('/Member-saving_deposit','Investment\InvestmentReturnInstallmentCont
 Route::resource('Member','Member\MemberController');
 Route::resource('Registers','Register\RegisterController');
 
+
+Route::put('/PanaltiInsert/{id}','Accounts\AccountController@PanaltiInsert');
+Route::put('/SavingCollectionSave/{id}','Accounts\AccountController@SavingCollectionSave');
+
+
+Route::get('/SavingIdData/{id}','Main_Controller\AjaxController@AccountSavingData');
 

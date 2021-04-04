@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main_Controller;
 
 use App\Accounts\Capital;
 use App\Accounts\Cash;
+use App\Accounts\Collection;
 use App\Http\Controllers\Controller;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentReturnInstallment;
@@ -11,6 +12,8 @@ use App\Member_model\Collectionsaving;
 use App\Member_model\Guardian;
 use App\Member_model\Member;
 
+use App\Member_model\MemberAccount;
+use App\Member_model\Saving;
 use App\Member_model\SavingAccount;
 use Illuminate\Http\Request;
 
@@ -78,7 +81,20 @@ class MainIndexController extends Controller
         $guardians = $investment->member->guardians()->where('investment_for',$investmentNo)->get();
         $installments = $investment->iRInstallments()->orderBy('id','asc')->get();
         $installmentlastdate = $investment->iRInstallments()->orderBy('id','DESC')->first();
-        return view('Investment.singel-investment',compact('investment','guardians','installments','installmentlastdate'));
+
+        $panaltyBalance = 0;
+        foreach ($investment->member->penaltys as $data){
+            $panaltyBalance += $data->penalty;
+        }
+
+        $restamount = 0;
+        $collection_amount= 0;
+        foreach ($installments as $last){
+            $restamount += $last->rest_amount;
+            $collection_amount += $last->collection_amount;
+        }
+
+        return view('Investment.singel-investment',compact('investment','guardians','installments','installmentlastdate','panaltyBalance','restamount','collection_amount'));
 
     }
 
@@ -92,7 +108,7 @@ class MainIndexController extends Controller
     {
         $todayDate = time();
         $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
-            ->where('status','!=',"3")
+            ->where('status','!=',"2")
             ->orderBy('date','DESC')->get();
 
         $today_installment_due = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
@@ -101,7 +117,7 @@ class MainIndexController extends Controller
 
         $today_installment_sum = InvestmentReturnInstallment::where('date','=',date('Y-m-d',$todayDate))->sum('installment_amount');
 
-        $today_collention_sum = InvestmentReturnInstallment::where('date','=',date('Y-m-d',$todayDate))->sum('collection_amount');
+        $today_collention_sum = Collection::where('date','=',date('Y-m-d',$todayDate))->sum('installment_amount');
 
         $today_saving_sum = SavingAccount::where('date','=',date('Y-m-d',$todayDate))
             ->sum('amount');
@@ -114,8 +130,33 @@ class MainIndexController extends Controller
     public function InstallmentAmountdata($id)
     {
         $newid = "#".$id;
-        $data = InvestmentReturnInstallment::where('voucher_no',$newid)->first();
+        $allinvestment = InvestmentReturnInstallment::where('voucher_no',$newid)->first();
+
+        $data=[
+            'voucher_no'=>$allinvestment->voucher_no,
+            'membername'=>$allinvestment->investment->member->name,
+        ];
         return response()->json($data);
+    }
+
+
+    public function MemberSavingAc()
+    {
+        $saving = Saving::where('status','1')->orderBy('id','DESC')->get();
+        return view('Member_pages.member_saving',compact('saving'));
+    }
+
+    public function MemberSavingAccount_details($id)
+    {
+        $saving = SavingAccount::where('saving_id',$id)->orderBy('date','DESC')->get();
+        return view('Member_pages.member_saving_details',compact('saving'));
+    }
+
+
+    public function AccountForMember()
+    {
+        $members = MemberAccount::orderBy('id','DESC')->paginate(15);
+        return view('Member_pages.member_accounts',compact('members'));
     }
 
 

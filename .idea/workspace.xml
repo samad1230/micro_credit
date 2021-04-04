@@ -20,31 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Member_model/SavingAccount.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/1616944962161694496204lh.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169449621616944962a2rf.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16169448371616944836i8f1.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/1616947108161694710892ya.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16169448361616944836i8f1.PIB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/user_profile/1616946084qkmz06.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/payment_saving.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Accounts/Penalty.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_03_171648_create_penalties_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_saving.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_saving_details.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Accounts/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accounts/Collection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Loan_Investment/Investment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Loan_Investment/Investment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/Saving.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Saving.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/SavingCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003258_create_investment_return_installments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003258_create_investment_return_installments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_28_191810_create_saving_collections_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_29_154418_create_saving_accounts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161693295516169329553fcw.PIB.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Register_page/cash_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Register_page/cash_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -181,15 +171,15 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MicroLoanProject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Member_pages" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Member_pages" />
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Investment" />
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Register_page" />
-      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Member_pages" />
       <recent name="D:\xampp\htdocs\MikroLoad\public\assets" />
     </key>
   </component>
@@ -215,7 +205,11 @@
       <workItem from="1616863110794" duration="11373000" />
       <workItem from="1616911247752" duration="24678000" />
       <workItem from="1616944698517" duration="3271000" />
-      <workItem from="1616996598511" duration="23483000" />
+      <workItem from="1616996598511" duration="23639000" />
+      <workItem from="1617185633758" duration="60000" />
+      <workItem from="1617447648097" duration="4116000" />
+      <workItem from="1617520959284" duration="34000" />
+      <workItem from="1617531010176" duration="13689000" />
     </task>
     <servers />
   </component>
@@ -242,14 +236,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616597675127" />
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617005039823">
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617538937961">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1617005039823" />
-    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1617002466292">
+    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1617538937961" />
+    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1617520982071">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617002466292" />
+    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617520982071" />
     <state x="297" y="151" key="run.anything.popup" timestamp="1616864548468">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
