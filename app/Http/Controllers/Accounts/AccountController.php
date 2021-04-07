@@ -62,7 +62,7 @@ class AccountController extends Controller
 
         $cash = new Cash();
         $cash->date = date('Y-m-d',time());
-        $cash->description = 'Saving taken under '.$request->voucher_no;
+        $cash->description = 'Saving taken under '.$savingdata->member->name;
         $cash->dr = number_format(intval($request->savingAmount),'2','.','');
         $cash->save();
 

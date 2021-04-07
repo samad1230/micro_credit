@@ -54,12 +54,12 @@
                         ?>
 
                     <li class="Ul_li--hover">
-                        <a class="has-arrow" href="#" {!! request()->path() == 'Member' || request()->path() == 'Member' ||request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Member' || request()->path() == 'Member' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
                             <i class="i-Love-User text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member'|| request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Members</span>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Members</span>
                         </a>
 
-                        <ul class="mm-collapse {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' ||request()->path() == 'Member/Accounts' || strpos(request()->path(),'member') != false ? 'mm-show':''}}">
+                        <ul class="mm-collapse {{ request()->path() == 'Member' || request()->path() == 'Admin/All-Member' || strpos(request()->path(),'member') != false ? 'mm-show':''}}">
                             <li class="item-name">
                                 <a href="{{ route('Member.index') }}">
                                     <i class="nav-icon i-Add-User"></i>
@@ -73,10 +73,27 @@
                                     <span class="item-name {{ request()->path() == 'Admin/All-Member' ? 'font-weight-bold':''}}">All Member</span>
                                 </a>
                             </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="Ul_li--hover">
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'aria-expanded="true"':'' !!}>
+                            <i class="i-Wallet text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'font-weight-bold':''}}">Member Accounts</span>
+                        </a>
+                        <ul class="mm-collapse {{ request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'mm-show':'' }}">
                             <li class="nav-item">
                                 <a href="{{ route('member.accounts') }}">
                                     <i class="nav-icon i-Checked-User"></i>
-                                    <span class="item-name {{ request()->path() == 'Member/Accounts' ? 'font-weight-bold':''}}">Member Accounts</span>
+                                    <span class="item-name {{ request()->path() == 'Member/Accounts' ? 'font-weight-bold':''}}">Member Details</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('penalty.details') }}">
+                                    <i class="nav-icon i-Checked-User"></i>
+                                    <span class="item-name {{ request()->path() == 'Penalty/Details' ? 'font-weight-bold':''}}">Penalty Details</span>
                                 </a>
                             </li>
                         </ul>
@@ -136,34 +153,34 @@
                         </ul>
                     </li>
 
-                    <li class="Ul_li--hover">
-                        <a class="has-arrow" href="javascript:void (0)" >
-                            <i class="i-Coins text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted">DPS</span>
-                        </a>
-                        <ul class="mm-collapse">
-                            <li class="item-name">
-                                <a href="javascript:void (0)">
-                                    <i class="nav-icon i-Add-File"></i>
-                                    <span class="item-name">Add New DPS</span>
-                                </a>
-                            </li>
+{{--                    <li class="Ul_li--hover">--}}
+{{--                        <a class="has-arrow" href="javascript:void (0)" >--}}
+{{--                            <i class="i-Coins text-20 mr-2 text-muted"></i>--}}
+{{--                            <span class="item-name text-15 text-muted">DPS</span>--}}
+{{--                        </a>--}}
+{{--                        <ul class="mm-collapse">--}}
+{{--                            <li class="item-name">--}}
+{{--                                <a href="javascript:void (0)">--}}
+{{--                                    <i class="nav-icon i-Add-File"></i>--}}
+{{--                                    <span class="item-name">Add New DPS</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
 
-                            <li class="item-name">
-                                <a href="javascript:void (0)" class="has-arrow">
-                                    <i class="nav-icon i-Bar-Chart-3"></i>
-                                    <span class="item-name">View in Chart</span>
-                                </a>
-                            </li>
+{{--                            <li class="item-name">--}}
+{{--                                <a href="javascript:void (0)" class="has-arrow">--}}
+{{--                                    <i class="nav-icon i-Bar-Chart-3"></i>--}}
+{{--                                    <span class="item-name">View in Chart</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
 
-                            <li class="nav-item">
-                                <a href="javascript:void (0)">
-                                    <i class="nav-icon i-Receipt-3"></i>
-                                    <span class="item-name">View Details</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="javascript:void (0)">--}}
+{{--                                    <i class="nav-icon i-Receipt-3"></i>--}}
+{{--                                    <span class="item-name">View Details</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
 
 
                     <li class="Ul_li--hover">

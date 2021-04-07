@@ -17,6 +17,7 @@ class CreateMembersTable extends Migration
             $table->id();
             $table->string('member_no');
             $table->string('name')->collation('utf16_general_ci');
+            $table->integer('ledgerid');
             $table->string('mobile');
             $table->string('father_name')->collation('utf16_general_ci');
             $table->string('mother_name')->collation('utf16_general_ci')->nullable();

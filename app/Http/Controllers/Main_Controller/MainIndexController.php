@@ -159,5 +159,16 @@ class MainIndexController extends Controller
         return view('Member_pages.member_accounts',compact('members'));
     }
 
+    public function AccountDetailForMember($id)
+    {
+        $members = MemberAccount::orderBy('id','DESC')->paginate(15);
+    }
+
+    public function DetailsPenalty()
+    {
+        $members = MemberAccount::orderBy('id','DESC')->paginate(15);
+        return view('Member_pages.member_accounts',compact('members'));
+    }
+
 
 }

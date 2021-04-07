@@ -59,7 +59,7 @@
                                     <td>
                                         @if($installment->collection_amount != null || $installment->status !='0')
                                             {{ number_format($installment->collection_amount,'2','.',',') }}
-                                        @elseif(date('d-m-Y',strtotime($installment->date)) ==$today)
+                                        @elseif(date('Y-m-d',strtotime($installment->date)) ==$today)
                                             <button type="button" class="btn btn-warning btn-sm collectionBtn" id="{{ $installment->voucher_no }}">Collect</button>
                                         @elseif($installment->status =='2')
 

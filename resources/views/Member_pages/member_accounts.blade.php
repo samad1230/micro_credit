@@ -42,9 +42,9 @@
                                         @endif
                                     </td>
                                     <td>{{ ucwords($member->member->name) }}</td>
-                                    <td>{{ $member->return_investment }}</td>
+                                    <td>{{ $member->return_investment != false ? $member->return_investment: ucwords('0') }}</td>
                                     <td>{{ $member->investment_pay != false ? $member->investment_pay: ucwords('0') }}</td>
-                                    <td>{{ $member->rest_investment}}</td>
+                                    <td>{{ $member->rest_investment != false ? $member->rest_investment: ucwords('0') }}</td>
 
                                         @php
                                           $panaltyBalance = 0;
@@ -55,6 +55,7 @@
                                     <td>{{ $panaltyBalance}}</td>
                                     <td>{{ $member->saving_amount != false ? $member->saving_amount: ucwords('0') }}</td>
                                     <td>{{ $member->dps_amount != false ? $member->dps_amount: ucwords('0') }}</td>
+
                                     <td>
                                         <a href="">
                                             <button type="button" class="btn btn-info btn-sm">{{ ucwords('view') }}</button>

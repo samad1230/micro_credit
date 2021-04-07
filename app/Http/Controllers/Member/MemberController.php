@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Member_model\Member;
 use App\Member_model\MemberAccount;
 use App\Member_model\NidImage;
+use App\Member_model\Nominee;
 use App\Member_model\Saving;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,12 +51,13 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'name' => 'required',
             'phone' => 'required|min:11|max:14',
             'father_name' => 'required',
             'income_source' => 'required',
-            'nid_no' => 'required',
+            'nid_no' => 'required|min:10|max:17',
             'present_address' => 'required',
             'permanent_address' => 'required',
             'nid_image' => 'required',
@@ -74,6 +76,7 @@ class MemberController extends Controller
 
         $member = new Member();
         $member->member_no="#".$time;
+        $member->ledgerid=$request->ledgerid;
         $member->name=$request->name;
         $member->mobile=$request->phone;
         $member->father_name=$request->father_name;
@@ -123,6 +126,14 @@ class MemberController extends Controller
         $memberaccount->saving_id=$SavingAcno;
         $memberaccount->save();
 
+        $nominess = new Nominee();
+        $nominess->member_id=$memberid;
+        $nominess->name=$request->nominee;
+        $nominess->age=$request->nomineeage;
+        $nominess->relation=$request->nomineerelation;
+        $nominess->father_name=$request->nomineefather;
+        $nominess->save();
+
         $notification = array(
             'message' => 'Member has been created successfully!',
             'alert-type' => 'success'
@@ -171,6 +182,7 @@ class MemberController extends Controller
         $member = Member::where('slag',$slag)->first();
         $member->name=$request->name;
         $member->mobile=$request->phone;
+        $member->ledgerid=$request->ledgerid;
         $member->father_name=$request->father_name;
         $member->occupation=$request->income_source;
         $member->present_address=$request->present_address;
@@ -204,6 +216,26 @@ class MemberController extends Controller
             $member_nuid->member_image=$avatarimageFilename;
         }
         $member_nuid->save();
+
+        $nominess = Nominee::where('member_id',$member->id)->first();
+        if ($nominess==null){
+            $nominess = new Nominee();
+            $nominess->member_id=$member->id;
+            $nominess->name=$request->nominee;
+            $nominess->age=$request->nomineeage;
+            $nominess->relation=$request->nomineerelation;
+            $nominess->father_name=$request->nomineefather;
+            $nominess->save();
+        }else{
+            $nominess = Nominee::find($nominess->id);
+            $nominess->member_id=$member->id;
+            $nominess->name=$request->nominee;
+            $nominess->age=$request->nomineeage;
+            $nominess->relation=$request->nomineerelation;
+            $nominess->father_name=$request->nomineefather;
+            $nominess->save();
+        }
+
 
         $notification = array(
             'message' => 'Member has been Update successfully!',

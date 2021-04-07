@@ -31,7 +31,7 @@
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('present address: ').'</span>'.$investment->member->present_address !!}</li>
                                     <li>{!! '<span class="text-muted font-weight-bold">'.ucwords('permanent address: ').'</span>'.$investment->member->permanent_address !!}</li>
                                     <---------------------->
-                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords('investment end date : ').$installmentlastdate->date .'</span>' !!}</li>
+                                    <li>{!! '<span class="font-weight-bold text-danger">'.ucwords('investment end date : ').@$installmentlastdate->date .'</span>' !!}</li>
                                     <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' collection amount : ').$collection_amount.'</span>' !!}</li>
                                     <li>{!! '<span class="font-weight-bold text-danger">'.ucwords(' penalty amount : ').$panaltyBalance.'</span>' !!}</li>
                                    @php

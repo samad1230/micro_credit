@@ -45,6 +45,8 @@ Route::get('/Penalty/Installment/amount/{id}', 'Main_Controller\MainIndexControl
 Route::get('/Member/Savings', 'Main_Controller\MainIndexController@MemberSavingAc')->name('member.saving-account');
 Route::get('/Member/Savings/Details/{id}', 'Main_Controller\MainIndexController@MemberSavingAccount_details')->name('saving.show');
 Route::get('/Member/Accounts', 'Main_Controller\MainIndexController@AccountForMember')->name('member.accounts');
+Route::get('/Member/Accounts/Details/{id}', 'Main_Controller\MainIndexController@AccountDetailForMember')->name('accounts.details_member');
+Route::get('/Penalty/Details', 'Main_Controller\MainIndexController@DetailsPenalty')->name('penalty.details');
 //======================== All index route ================================//
 
 

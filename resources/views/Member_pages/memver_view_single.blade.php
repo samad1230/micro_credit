@@ -25,7 +25,8 @@
 {{--                                        <a class="text-danger mr-2 deleteMemberBtn" href="javascript: void(0)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a>--}}
                                             </span>
                                         </h5>
-                                        <p class="card-text">{{ $member->status != false ? '('.ucwords('active').')' : '('.ucwords('deactive').')'  }} {{" "."Member No : " .$member->member_no}}</p>
+                                        <p class="card-text">{{ $member->status != false ? '('.ucwords('active').')' : '('.ucwords('deactive').')'  }} {{" "."Member No : " .$member->member_no}}
+                                            <br> {{"Ledger No : " .@$member->ledgerid}}</p>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><b>Father Name : </b>{{ ucwords($member->father_name) }}</li>
@@ -36,7 +37,11 @@
                                         <li class="list-group-item"><b>Permanent Address : </b>{{ $member->permanent_address }}</li>
                                         <li class="list-group-item"><b>DPS No : </b>{{ null }}</li>
                                         <li class="list-group-item"><b>Savings No : </b>{{ $member->saveingmem->savings_no }}</li>
-                                        <li class="list-group-item"><b>Lone No : </b>{{ null }}</li>
+                                        <li class="list-group-item"><b>Lone No : </b>
+                                            @foreach($member->Loans as $data)
+                                            {{$data->investment_no}}
+                                            @endforeach
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -52,6 +57,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Nominee Name : </b>{{ @$member->nominee->name }}</li>
+                                    <li class="list-group-item"><b>Nominee Father : </b>{{ @$member->nominee->father_name }}</li>
+                                    <li class="list-group-item"><b>Relation : </b>{{ @$member->nominee->relation }}</li>
+                                    <li class="list-group-item"><b>Nominee Age : </b>{{ @$member->nominee->age }}</li>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -114,7 +126,14 @@
                                             {{ ucwords('member source of income is required.') }}
                                         </div>
                                     </div>
-                                    <div class="col-md-8 mb-3">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="ledgerId">{{ ucwords('ledger id *') }}</label>
+                                        <input class="form-control" name="ledgerid" id="ledgerId" type="text" placeholder="{{ ucwords('ledger id') }}" value="{{ $member->ledgerid }}" required="required">
+                                        <div class="invalid-tooltip">
+                                            {{ ucwords('member ledger id is required.') }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
                                         <label for="nidNo">{{ ucwords('nid no*') }}</label>
                                         <input class="form-control" name="nid_no" id="nidNo" type="text" placeholder="{{ ucwords('national id card number') }}" value="{{ $member->nidImage->nuid_no }}" required="required">
                                         <div class="invalid-tooltip">
@@ -151,6 +170,27 @@
                                         <div class="invalid-tooltip">
                                             {{ 'permanent address is required' }}
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nomineeName">{{ ucwords('nominee name') }}<span class="tx-danger"> * </span></label>
+                                        <input class="form-control" name="nominee" id="nomineeName" type="text" placeholder="{{ ucwords('nominee name') }}" value="{{@$member->nominee->name}}" required="required">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="FatherName">{{ ucwords('nominee father name ') }} <span class="tx-danger"> * </span></label>
+                                        <input class="form-control" name="nomineefather" id="FatherName" type="text" placeholder="{{ ucwords('nominee father name ') }}" value="{{@$member->nominee->father_name}}" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nomineeAge">{{ ucwords('nominee Age') }}<span class="tx-danger">* </span></label>
+                                        <input class="form-control" name="nomineeage" id="nomineeAge" type="text" placeholder="Age" value="{{@$member->nominee->age}}" required="required">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nomineeRelation">{{ ucwords('nominee relation ') }} <span class="tx-danger"> * </span></label>
+                                        <input class="form-control" name="nomineerelation" id="nomineeRelation" type="text" placeholder=" {{ ucwords('nominee relation.') }}" value="{{@$member->nominee->relation}}" required="required">
                                     </div>
                                 </div>
 
