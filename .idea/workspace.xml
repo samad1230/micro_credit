@@ -20,44 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16176092621617609262nuc8.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16177953181617795318eqzg.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/161760870216176087022gke.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16176130041617613004ru91.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16177937941617793794pcdj.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/161760870216176087022gke.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16176130041617613004ru91.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16177937941617793794pcdj.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/user_profile/161760866482f1o6.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/multipurpas_credit.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161817203416181720345x8j.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16181716651618171665x9ra.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16181716651618171665x9ra.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/Nominee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Nominee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210136_create_members_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210136_create_members_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169316581616931658jz3y.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169330471616933047ey9c.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/161693569716169356978olx.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/1616944962161694496204lh.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16169449621616944962a2rf.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161693126216169312624bq0.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16169313371616931337o3pj.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16169315851616931585fc95.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16169448371616944836i8f1.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/1616947108161694710892ya.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161693126216169312624bq0.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16169313371616931337o3pj.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16169315851616931585fc95.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161693295516169329553fcw.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16169448361616944836i8f1.PIB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Media/user_profile/1616946084qkmz06.PIB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16176092621617609262nuc8.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16177945021617794502fci2.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16177945021617794502l3ab.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16177953181617795318eqzg.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/161760870216176087022gke.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16176130041617613004ru91.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16177937941617793794pcdj.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16177960281617796028rmwq.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/161760870216176087022gke.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16176130041617613004ru91.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16177937941617793794pcdj.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16177960281617796028rmwq.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/user_profile/161760866482f1o6.PIB.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/memver_view_single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/memver_view_single.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -195,7 +178,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Member_pages" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -237,7 +220,11 @@
       <workItem from="1617608192714" duration="9209000" />
       <workItem from="1617688466745" duration="599000" />
       <workItem from="1617785917787" duration="14000" />
-      <workItem from="1617793598869" duration="2355000" />
+      <workItem from="1617793598869" duration="3142000" />
+      <workItem from="1617863173494" duration="934000" />
+      <workItem from="1617982178647" duration="606000" />
+      <workItem from="1618034751281" duration="647000" />
+      <workItem from="1618159683838" duration="9343000" />
     </task>
     <servers />
   </component>
@@ -258,23 +245,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616597675127">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="371" y="90" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616597675127" />
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617538937961">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="371" y="98" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1617538937961" />
-    <state x="421" y="98" key="FileChooserDialogImpl" timestamp="1617785924685">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617785924685" />
-    <state x="297" y="151" key="run.anything.popup" timestamp="1616864548468">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1616864548468" />
   </component>
 </project>

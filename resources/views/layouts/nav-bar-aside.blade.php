@@ -23,14 +23,14 @@
 
                     <li class="Ul_li--hover">
                         <a class="has-arrow" href="#" {!! request()->path() == 'Registers' || request()->path() == 'Capital/Details' || request()->path() == 'Cash/Details' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
-                            <i class="i-Suitcase text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Registers' || request()->path() == 'Capital/Details' ||request()->path() == 'Cash/Details' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Accounts Section</span>
+                            <i class="i-Receipt text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Registers' || request()->path() == 'Capital/Details' ||request()->path() == 'Cash/Details' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Registers</span>
                         </a>
                         <ul class="mm-collapse {{ request()->path() == 'Registers' || request()->path() == 'Capital/Details' || request()->path() == 'Cash/Details' ? 'mm-show':'' }}">
                             <li class="item-name">
                                 <a href="{{ route('Registers.index') }}">
                                     <i class="nav-icon i-Cash-register-2"></i>
-                                    <span class="item-name {{ request()->path() == 'Registers' ? 'font-weight-bold':'' }}">Register</span>
+                                    <span class="item-name {{ request()->path() == 'Registers' ? 'font-weight-bold':'' }}">Register Book</span>
                                 </a>
                             </li>
 
@@ -79,8 +79,8 @@
 
                     <li class="Ul_li--hover">
                         <a class="has-arrow" href="#" {!! request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'aria-expanded="true"':'' !!}>
-                            <i class="i-Wallet text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'font-weight-bold':''}}">Member Accounts</span>
+                            <i class="i-Money-Bag text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'font-weight-bold':''}}"> Accounts</span>
                         </a>
                         <ul class="mm-collapse {{ request()->path() == 'Member/Accounts' || request()->path() == 'Penalty/Details' || strpos(request()->path(),'memberac') != false ? 'mm-show':'' }}">
                             <li class="nav-item">
@@ -91,7 +91,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('penalty.details') }}">
+                                <a href="#">
                                     <i class="nav-icon i-Checked-User"></i>
                                     <span class="item-name {{ request()->path() == 'Penalty/Details' ? 'font-weight-bold':''}}">Penalty Details</span>
                                 </a>
@@ -135,7 +135,20 @@
                         </ul>
                     </li>
 
-
+                    <li class="Ul_li--hover">
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Product/Data' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                            <i class="i-Clothing-Store text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Product/Data' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Product</span>
+                        </a>
+                        <ul class="mm-collapse {{ request()->path() == 'Product/Data' || strpos(request()->path(),'saving') != false ? 'mm-show':'' }}">
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Product/Data' ? 'font-weight-bold':'' }}">Product</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
 
                     <li class="Ul_li--hover">
@@ -148,6 +161,45 @@
                                 <a href="{{ route('member.saving-account') }}">
                                     <i class="nav-icon i-Bar-Chart-2"></i>
                                     <span class="item-name {{ request()->path() == 'Member/Savings' ? 'font-weight-bold':'' }}">Member Savings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="Ul_li--hover">
+                        <a class="has-arrow" href="#" {!! request()->path() == 'Member/Search' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                            <i class="i-Statistic text-20 mr-2 text-muted"></i>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Member/Search' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Reports</span>
+                        </a>
+                        <ul class="mm-collapse {{ request()->path() == 'Member/Search' || strpos(request()->path(),'saving') != false ? 'mm-show':'' }}">
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Search' ? 'font-weight-bold':'' }}">Member Search</span>
+                                </a>
+                            </li>
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Search' ? 'font-weight-bold':'' }}">Collection Search</span>
+                                </a>
+                            </li>
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Search' ? 'font-weight-bold':'' }}">Pending Collection</span>
+                                </a>
+                            </li>
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Search' ? 'font-weight-bold':'' }}">Total Investment</span>
+                                </a>
+                            </li>
+                            <li class="item-name">
+                                <a href="#">
+                                    <i class="nav-icon i-Bar-Chart-2"></i>
+                                    <span class="item-name {{ request()->path() == 'Member/Search' ? 'font-weight-bold':'' }}">Total Saving</span>
                                 </a>
                             </li>
                         </ul>

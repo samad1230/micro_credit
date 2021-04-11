@@ -57,7 +57,7 @@
                                     <td>{{ $member->dps_amount != false ? $member->dps_amount: ucwords('0') }}</td>
 
                                     <td>
-                                        <a href="">
+                                        <a href="{{route('memberaccounts.details',$member->member->slag)}}">
                                             <button type="button" class="btn btn-info btn-sm">{{ ucwords('view') }}</button>
                                         </a>
                                     </td>

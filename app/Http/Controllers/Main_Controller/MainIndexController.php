@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main_Controller;
 use App\Accounts\Capital;
 use App\Accounts\Cash;
 use App\Accounts\Collection;
+use App\Accounts\Penalty;
 use App\Http\Controllers\Controller;
 use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentReturnInstallment;
@@ -109,6 +110,7 @@ class MainIndexController extends Controller
         $todayDate = time();
         $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
             ->where('status','!=',"2")
+            ->where('status','!=',"1")
             ->orderBy('date','DESC')->get();
 
         $today_installment_due = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
@@ -159,9 +161,18 @@ class MainIndexController extends Controller
         return view('Member_pages.member_accounts',compact('members'));
     }
 
-    public function AccountDetailForMember($id)
+    public function AccountDetailForMember($slag)
     {
-        $members = MemberAccount::orderBy('id','DESC')->paginate(15);
+        $member = Member::where('slag',$slag)->first();
+        $investment = Investment::where('member_id',$member->id)->where('status',1)->first();
+        $investpaid = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('collection_amount');
+        $investdue = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('rest_amount');
+        $investpanalti = Penalty::where('investment_id',$investment->id)->sum('penalty');
+
+        $totaldue = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',0)->count();
+        $totalpaid = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',1)->count();
+        $totalpnalti = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',2)->count();
+        return view('Member_pages.single_member_Accounts_details',compact('member','investment','investpaid','investdue','investpanalti','totaldue','totalpaid','totalpnalti'));
     }
 
     public function DetailsPenalty()
