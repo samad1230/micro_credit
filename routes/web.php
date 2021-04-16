@@ -79,7 +79,12 @@ Route::resource('Registers','Register\RegisterController');
 
 Route::put('/PanaltiInsert/{id}','Accounts\AccountController@PanaltiInsert');
 Route::put('/SavingCollectionSave/{id}','Accounts\AccountController@SavingCollectionSave');
+Route::put('/SavingWithdrawalAmount/{id}','Accounts\AccountController@SavingWithdrawalAmounts');
+Route::put('/InstallmentDuePenaltyCash/{id}','Accounts\AccountController@InstallmentDuePenaltyCashSave');
+Route::put('/InstallmentAdjustAndClose/{id}','Accounts\AccountController@AdjustInvestment');
 
 
 Route::get('/SavingIdData/{id}','Main_Controller\AjaxController@AccountSavingData');
+Route::get('/penaltyaddMember/{id}','Main_Controller\AjaxController@PenaltyaddByMember');
+Route::get('/InvestmentAdjust/{id}','Main_Controller\AjaxController@AdjustInvestment');
 

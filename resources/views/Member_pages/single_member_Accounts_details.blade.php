@@ -1,18 +1,21 @@
 @extends('layouts.master-layouts')
-<style>
-    .rightdata{
-        float: right;
-        color: red;
-        font-weight: bold;
-    }
-    .leftdata{
-        color: red;
-        font-weight: bold;
-    }
-
-</style>
 @section('page-css')
-
+    <style>
+        .rightdata{
+            float: right;
+            color: red;
+            font-weight: bold;
+        }
+        .leftdata{
+            color: red;
+            font-weight: bold;
+        }
+        .modal-body {
+            position: relative;
+            flex: 1 1 auto;
+            padding: .6rem;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -54,11 +57,11 @@
 
                             <div class="col-md-6">
                                 <div class="card mb-4 o-hidden">
-                                    <button type="button" class="btn btn-success btn-md">{{ ucwords('saving withdrawal') }}</button>
+                                    <button type="button" class="btn btn-success btn-md savingwithrwal" id="{{$member->saveingac->id}}">{{ ucwords('saving withdrawal')}}</button>
                                     <br>
-                                        <button type="button" class="btn btn-danger btn-md">{{ ucwords('extra Penalty ') }}</button>
+                                        <button type="button" class="btn btn-danger btn-md penaltyadd" id="{{$member->id}}">{{ ucwords('extra Penalty ') }}</button>
                                     <br>
-                                    <button type="button" class="btn btn-info btn-md">{{ ucwords('loan adjustment') }}</button>
+                                    <button type="button" class="btn btn-info btn-md adjustment" id="{{$member->id}}">{{ ucwords('loan adjustment') }}</button>
                                     <br>
 
 
@@ -72,16 +75,367 @@
     </div>
 
 
+    <div class="modal fade" id="SavingCollectionwithrwal" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Saving Withdrawal</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="saving_Withdrawal_data" method="POST"  enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Member Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_name" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Savings No</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="saving" class="form-control" id="Savings_no" placeholder="Savings No" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Savings Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="SavingsAmount" class="form-control" id="SavingsAmount" placeholder="Savings Amount" onkeyup="checkFunction()" readonly="" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Withdrawal Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="SavingsWithdrawalAmount" class="form-control" id="WithdrawalAmount" placeholder="Withdrawal Amount" onchange="checkFunction()" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" id="saveidbtn" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="InstallmentduePenalty" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Installment Due Penalty</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="InstallmentDataAmount" method="POST"  enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Member Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_nameid" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Invest No</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="investno" class="form-control" id="invest_no" placeholder="Invest No" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Installment due Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="Installment_due_Amount" class="form-control" id="InstallmentAmount" placeholder="Installment Due Amount" readonly="" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Installment Count</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="Installment_count" class="form-control" id="Installmentcount" placeholder="Installment Count" readonly="" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Penalty Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="PenaltyAmount" class="form-control" id="Penalty_Amount" placeholder="Penalty Amount" onchange="checkFunction()" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" id="" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="loanAdjustment" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Installment Adjustment </h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="Installmentadjustment" method="POST"  enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+                        <input type="hidden" id="savingblanch" value="{{@$member->memberAccount->saving_amount}}">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Member Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_nameloan" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Invest No</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="investnodata" class="form-control" id="invest_number" placeholder="Invest No" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Installment due Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="Installment_dueAmount" class="form-control" id="Installmentdue_Amount" placeholder="Installment Due Amount" readonly="" onkeyup="checkFunction()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Installment Payment</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="Payment_amount" class="form-control"  placeholder="Installment Payment" id="install_payment" onkeyup="checkFunction()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Close Saving Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="SavingAmountclose" class="form-control" id="SavingAmount_close" placeholder="{{@$member->memberAccount->saving_amount." Taka"}}" onkeyup="checkFunction()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Discount Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="discountAmount" class="form-control"  placeholder="Discount Amount" id="dis_amount" onkeyup="checkFunction()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Blanch Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="" class="form-control"  placeholder="Blanch Amount" id="Blanch_amount" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" id="submit_data" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('page-script')
     <script src="{{asset('assets/js/scripts/form.validation.script.min.js')}}"></script>
     <script !src="">
         $(function () {
-            $('.editMemberBtn').on('click',function () {
-                $('#memderEditModalCenter').modal('show');
+            $('.savingwithrwal').on('click',function () {
+                var savingid = $(this).attr('id');
+                $.ajax({
+                    type: 'GET',
+                    url:'/SavingIdData/'+savingid,
+                    success: function (data) {
+                        $("#Savings_no").val(data.savingno);
+                        $("#member_name").val(data.membername);
+                        $("#SavingsAmount").val(data.savingamount);
+                        $('.saving_Withdrawal_data').attr('action', '/SavingWithdrawalAmount/'+savingid);
+                    }
+                });
+                $("#SavingCollectionwithrwal").modal('show');
             });
 
-        })
+
+
+            $('.penaltyadd').on('click',function () {
+                var memberid = $(this).attr('id');
+                $.ajax({
+                    type: 'GET',
+                    url:'/penaltyaddMember/'+memberid,
+                    success: function (data) {
+                        $("#member_nameid").val(data.membername);
+                        $("#invest_no").val(data.investmentno);
+                        $("#InstallmentAmount").val(data.panaltyamount);
+                        $("#Installmentcount").val(data.installmentcount);
+                        $('.InstallmentDataAmount').attr('action', '/InstallmentDuePenaltyCash/'+memberid);
+                    }
+                });
+                $("#InstallmentduePenalty").modal('show');
+            });
+
+            $('.adjustment').on('click',function () {
+                var memberid = $(this).attr('id');
+                $.ajax({
+                    type: 'GET',
+                    url:'/InvestmentAdjust/'+memberid,
+                    success: function (data) {
+                        $("#member_nameloan").val(data.membername);
+                        $("#invest_number").val(data.investmentno);
+                        $("#Installmentdue_Amount").val(data.installment_rest);
+                        $('.Installmentadjustment').attr('action', '/InstallmentAdjustAndClose/'+memberid);
+                    }
+                });
+                $("#loanAdjustment").modal('show');
+            });
+
+
+        });
+
+        function checkFunction() {
+            var SavingsAmount = document.getElementById('SavingsAmount').value;
+            var WithdrawalAmount = document.getElementById('WithdrawalAmount').value;
+            var Savings = parseInt(SavingsAmount) ;
+            var Withdrawal = parseInt(WithdrawalAmount) ;
+            if(Withdrawal > Savings){
+               alert("Withdrawal Amount Not Available");
+                $('#saveidbtn').attr('disabled','disabled');
+            }else{
+                $('#saveidbtn').attr('disabled',false);
+            }
+
+            var Installmentdue_Amount = document.getElementById('Installmentdue_Amount').value;
+            var install_payment = document.getElementById('install_payment').value;
+            var SavingAmount_close = document.getElementById('SavingAmount_close').value;
+            var Savingsavingblanch = document.getElementById('savingblanch').value;
+            var dis_amount = document.getElementById('dis_amount').value;
+            var paymentvalu = Installmentdue_Amount - install_payment;
+            var savingminus = paymentvalu - SavingAmount_close;
+            var lastblanch = savingminus - dis_amount;
+            document.getElementById('Blanch_amount').value = '৳ '+ lastblanch;
+
+            var SavingAmount = parseInt(SavingAmount_close) ;
+            var savingblanch = parseInt(Savingsavingblanch) ;
+            if(SavingAmount > savingblanch){
+                alert("Withdrawal Amount Not Available");
+                $('#SavingAmount_close').val('');
+            }
+
+            if(lastblanch < 0){
+                alert("Check Adjust Cash");
+                $('#submit_data').attr('disabled','disabled');
+            }else{
+                $('#submit_data').attr('disabled',false);
+            }
+        }
     </script>
 @endsection
