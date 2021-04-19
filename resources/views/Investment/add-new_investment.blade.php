@@ -28,9 +28,7 @@
                                         <select class="selectMember form-control" id="memberSelection" name="selected_member" required autofocus>
                                             <option disabled selected>Select Member</option>
                                             @foreach($members as $member)
-                                                @if(count($member->Loans) < 1)
-                                                    <option value="{{ $member->slag }}">{{ 'ID: '.$member->member_no.', Name: '.$member->name.', NID: '.$member->nidImage->nuid_no }}</option>
-                                                @endif
+                                                <option value="{{ $member->slag }}">{{ 'ID: '.$member->member_no.', Name: '.$member->name.', NID: '.$member->nidImage->nuid_no }}</option>
                                             @endforeach
                                         </select>
                                     </div>

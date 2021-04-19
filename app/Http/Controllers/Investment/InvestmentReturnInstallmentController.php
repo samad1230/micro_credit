@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Investment;
 
 use App\Accounts\Cash;
 use App\Accounts\Collection;
+use App\Accounts\Penalty;
 use App\Http\Controllers\Controller;
+use App\Loan_Investment\Investment;
 use App\Loan_Investment\InvestmentReturnInstallment;
+use App\Member_model\Member;
 use App\Member_model\MemberAccount;
+use App\Member_model\MemberCloseLoan;
 use App\Member_model\Saving;
 use App\Member_model\SavingAccount;
 use Illuminate\Http\Request;
@@ -20,6 +24,10 @@ class InvestmentReturnInstallmentController extends Controller
     }
 
     public function installmentInsert(Request $request){
+
+        $memberdata = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no, 'status'=>"0"])->first();
+        $intallment = InvestmentReturnInstallment::where('investment_id',$memberdata->investment->id)->where('status',"0")->sum('rest_amount');
+        $penalty = Penalty::where('member_id',$memberdata->investment->member_id)->sum('penalty');
 
         $installment = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no, 'status'=>"0"])->first();
 
@@ -135,10 +143,44 @@ class InvestmentReturnInstallmentController extends Controller
                     $advanceAmount = $advanceAmount - $nextInstallments[$x]->installment_amount;
                 }
             }
+
+            $intallmentTotal = $intallment + $penalty;
+
+            if ($intallmentTotal == intval($request->collection)){
+                $memberaccount= MemberAccount::find($memberdata->investment->member_id);
+
+                $loanClose = new MemberCloseLoan();
+                $loanClose->member_id=$memberdata->investment->member_id;
+                $loanClose->invest_no=$memberdata->investment->investment_no;
+                $loanClose->return_investment=$memberaccount->return_investment;
+                $loanClose->investment_pay=$memberaccount->investment_pay;
+                $loanClose->discount_payment=0;
+                $loanClose->saving_close=0;
+                $loanClose->save();
+
+                $memberaccount->return_investment= 0;
+                $memberaccount->discount_payment= 0;
+                $memberaccount->rest_investment= 0;
+                $memberaccount->investment_pay= 0;
+                $memberaccount->save();
+
+                $invest = Investment::where('investment_no',$memberdata->investment->investment_no)->first();
+                $invest->status="2";
+                $invest->save();
+
+                $menber = Member::find($memberdata->investment->member_id);
+                $menber->status="0";
+                $menber->save();
+
+                Penalty::where('member_id',$memberdata->investment->member_id)->delete();
+            }
+
             return response()->json('success');
         }
         return response()->json('error');
     }
+
+
 
     public function SavingInstallment(Request $request)
     {

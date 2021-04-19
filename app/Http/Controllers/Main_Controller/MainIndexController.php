@@ -165,6 +165,7 @@ class MainIndexController extends Controller
     {
         $member = Member::where('slag',$slag)->first();
         $investment = Investment::where('member_id',$member->id)->where('status',1)->first();
+        //$investment = Investment::where('member_id',$member->id)->first();
         $investpaid = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('collection_amount');
         $investdue = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('rest_amount');
         $investpanalti = Penalty::where('investment_id',$investment->id)->sum('penalty');

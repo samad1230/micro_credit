@@ -43,7 +43,10 @@
                                     </td>
                                     <td>{{ ucwords($member->member->name) }}</td>
                                     <td>{{ $member->return_investment != false ? $member->return_investment: ucwords('0') }}</td>
-                                    <td>{{ $member->investment_pay != false ? $member->investment_pay: ucwords('0') }}</td>
+                                    @php
+                                        $payment = $member->investment_pay + $member->discount_payment;
+                                    @endphp
+                                    <td>{{ $payment != false ? $payment: ucwords('0') }}</td>
                                     <td>{{ $member->rest_investment != false ? $member->rest_investment: ucwords('0') }}</td>
 
                                         @php
@@ -57,9 +60,23 @@
                                     <td>{{ $member->dps_amount != false ? $member->dps_amount: ucwords('0') }}</td>
 
                                     <td>
-                                        <a href="{{route('memberaccounts.details',$member->member->slag)}}">
+                                       <?php
+                                       $status = $member->member->memberAccount->return_investment;
+                                        if($status==0){
+                                         ?>
+                                           <a href="#">
+                                               <button type="button" class="btn btn-info btn-sm">{{ ucwords('view') }}</button>
+                                           </a>
+                                           <?php
+                                        }else{
+                                           ?>
+                                            <a href="{{route('memberaccounts.details',$member->member->slag)}}">
                                             <button type="button" class="btn btn-info btn-sm">{{ ucwords('view') }}</button>
-                                        </a>
+                                           </a>
+                                           <?php
+                                           }
+                                        ?>
+
                                     </td>
                                 </tr>
                                 @php

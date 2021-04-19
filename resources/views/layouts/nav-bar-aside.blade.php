@@ -86,7 +86,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('member.accounts') }}">
                                     <i class="nav-icon i-Checked-User"></i>
-                                    <span class="item-name {{ request()->path() == 'Member/Accounts' ? 'font-weight-bold':''}}">Member Details</span>
+                                    <span class="item-name {{ request()->path() == 'Member/Accounts' ? 'font-weight-bold':''}}">Member Accounts</span>
                                 </a>
                             </li>
 

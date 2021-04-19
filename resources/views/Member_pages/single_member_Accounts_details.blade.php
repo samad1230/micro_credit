@@ -430,8 +430,8 @@
                 $('#SavingAmount_close').val('');
             }
 
-            if(lastblanch < 0){
-                alert("Check Adjust Cash");
+            if(lastblanch != 0){
+                //alert("Check Adjust Cash");
                 $('#submit_data').attr('disabled','disabled');
             }else{
                 $('#submit_data').attr('disabled',false);

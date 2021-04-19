@@ -20,11 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Loan_Investment/LoanAdjustment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Member_model/MemberCloseLoan.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_19_172053_create_member_close_loans_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188289001618828900qod2.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188331471618833147j5af.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161883887416188388748ip1.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/1618832938161883293893vd.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16188388181618838818bhzl.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1618832938161883293893vd.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16188388181618838818bhzl.PIB.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +56,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/resources/views/Member_pages/member_saving.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Member_model/Saving.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/routes/web.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/Member_pages/member_saving.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -218,7 +235,11 @@
       <workItem from="1618159683838" duration="9420000" />
       <workItem from="1618223543448" duration="65000" />
       <workItem from="1618555409328" duration="2527000" />
-      <workItem from="1618590192444" duration="8980000" />
+      <workItem from="1618590192444" duration="9057000" />
+      <workItem from="1618640861310" duration="123000" />
+      <workItem from="1618641048675" duration="4571000" />
+      <workItem from="1618724017999" duration="2000" />
+      <workItem from="1618819811511" duration="19166000" />
     </task>
     <servers />
   </component>

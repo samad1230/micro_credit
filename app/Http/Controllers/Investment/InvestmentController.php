@@ -24,23 +24,38 @@ class InvestmentController extends Controller
 
     public function AddInvestment(Request $request){
 
+        $member = Member::where('slag',$request->selected_member)->first();
+        if ((count($member->guardians)) > 0){
+            $this->validate($request,[
+                'selected_member' => 'required',
+                'investment_type' => 'required',
+                'investment_behaviour' => 'required',
+                'investment_amount' => 'required',
+                'installment_count' => 'required',
+                'interest_rate' => 'required',
+                'sanction_date' => 'required',
+                'disburse_date' => 'required',
+            ]);
+        }else{
+            $this->validate($request,[
+                'selected_member' => 'required',
+                'guardian_name' => 'required|min:1|max:3',
+                'guardian_phone' => 'required|min:1|max:3',
+                'guardian_relation' => 'required|min:1|max:3',
+                'guardian_nid_no' => 'required|min:1|max:3',
+                'guardian_present_address' => 'required|min:1|max:3',
+                'guardian_permanent_address' => 'required|min:1|max:3',
+                'investment_type' => 'required',
+                'investment_behaviour' => 'required',
+                'investment_amount' => 'required',
+                'installment_count' => 'required',
+                'interest_rate' => 'required',
+                'sanction_date' => 'required',
+                'disburse_date' => 'required',
+            ]);
+        }
 
-        $this->validate($request,[
-            'selected_member' => 'required',
-            'guardian_name' => 'required|min:1|max:3',
-            'guardian_phone' => 'required|min:1|max:3',
-            'guardian_relation' => 'required|min:1|max:3',
-            'guardian_nid_no' => 'required|min:1|max:3',
-            'guardian_present_address' => 'required|min:1|max:3',
-            'guardian_permanent_address' => 'required|min:1|max:3',
-            'investment_type' => 'required',
-            'investment_behaviour' => 'required',
-            'investment_amount' => 'required',
-            'installment_count' => 'required',
-            'interest_rate' => 'required',
-            'sanction_date' => 'required',
-            'disburse_date' => 'required',
-        ]);
+
 
         $guardianNidImage = [];
         if($request->hasFile('guardian_nid_image')){
@@ -59,16 +74,18 @@ class InvestmentController extends Controller
                 $guardianNidImage [] = $nid;
             }
         }
+        if($request->has('guardian_name')){
+            $dataCount = count($request->guardian_name);
+            if ($dataCount != count($request->guardian_phone)&& $dataCount != count($request->father_name) && $dataCount != count($request->guardian_relation) && $dataCount != count($request->guardian_nid_no) && $dataCount != count($request->guardian_present_address) && $dataCount != count($request->guardian_permanent_address)){
+                $notification = array(
+                    'message' => 'You has been provide a wrong information about Guardian!',
+                    'alert-type' => 'error'
+                );
 
-        $dataCount = count($request->guardian_name);
-        if ($dataCount != count($request->guardian_phone)&& $dataCount != count($request->father_name) && $dataCount != count($request->guardian_relation) && $dataCount != count($request->guardian_nid_no) && $dataCount != count($request->guardian_present_address) && $dataCount != count($request->guardian_permanent_address)){
-            $notification = array(
-                'message' => 'You has been provide a wrong information about Guardian!',
-                'alert-type' => 'error'
-            );
-
-            return back()->with($notification);
+                return back()->with($notification);
+            }
         }
+
 
         $no = time();
         $investmentNo = null;
@@ -124,34 +141,37 @@ class InvestmentController extends Controller
         $investment->disburse_date = date('Y-m-d',strtotime($request->disburse_date));
         $investment->save();
 
-        // insert guardian
-        for ($a = 0; $a < $dataCount; $a++){
-            $guardianData = new Guardian();
-            $guardianData->member_id = $member->id;
-            $guardianData->name = $request->guardian_name[$a];
-            $guardianData->father_name = $request->father_name[$a];
-            $guardianData->phone = $request->guardian_phone[$a];
-            $guardianData->nid_no = $request->guardian_nid_no[$a];
-            $guardianData->relational_status = $request->guardian_relation[$a];
-            $guardianData->present_address = $request->guardian_present_address[$a];
-            $guardianData->permanent_address = $request->guardian_permanent_address[$a];
-            $guardianData->investment_for = $investmentNo;
-            $guardianData->save();
-            $guardian = $guardianData->id;
+
+        if($request->has('guardian_name')) {
+            // insert guardian
+            for ($a = 0; $a < $dataCount; $a++) {
+                $guardianData = new Guardian();
+                $guardianData->member_id = $member->id;
+                $guardianData->name = $request->guardian_name[$a];
+                $guardianData->father_name = $request->father_name[$a];
+                $guardianData->phone = $request->guardian_phone[$a];
+                $guardianData->nid_no = $request->guardian_nid_no[$a];
+                $guardianData->relational_status = $request->guardian_relation[$a];
+                $guardianData->present_address = $request->guardian_present_address[$a];
+                $guardianData->permanent_address = $request->guardian_permanent_address[$a];
+                $guardianData->investment_for = $investmentNo;
+                $guardianData->save();
+                $guardian = $guardianData->id;
 
 
-            $model_common = new CommonModel();
-            $ImgNamenew =  $model_common->ImageName();
+                $model_common = new CommonModel();
+                $ImgNamenew = $model_common->ImageName();
 
-            $guardianNid = new GuardianImage();
-            if($request->hasFile('guardian_nid_image')){
-                $nuidimageFilename = time() . $ImgNamenew . $guardianNidImage[$a]->getClientOriginalExtension();
-                Image::make($guardianNidImage[$a]->getRealPath())->resize(450, 300)->save(public_path('/Media/Guardian_NUID/'.$nuidimageFilename));
-                $guardianNid->image=$nuidimageFilename;
+                $guardianNid = new GuardianImage();
+                if ($request->hasFile('guardian_nid_image')) {
+                    $nuidimageFilename = time() . $ImgNamenew . $guardianNidImage[$a]->getClientOriginalExtension();
+                    Image::make($guardianNidImage[$a]->getRealPath())->resize(450, 300)->save(public_path('/Media/Guardian_NUID/' . $nuidimageFilename));
+                    $guardianNid->image = $nuidimageFilename;
+                }
+                $guardianNid->nid_no = $request->guardian_nid_no[$a];;
+                $guardianNid->guardian_id = $guardian;
+                $guardianNid->save();
             }
-            $guardianNid->nid_no = $request->guardian_nid_no[$a];;
-            $guardianNid->guardian_id = $guardian;
-            $guardianNid->save();
         }
 
         $member->status = "1";
@@ -236,7 +256,7 @@ class InvestmentController extends Controller
                 $down = $request->downpayment;
             }
 
-            $member = Member::where('id',$id)->first();
+            $member = Member::where('id',$investment->member->id)->first();
 
             $cash = new Cash();
             $cash->date = date('Y-m-d',time());
@@ -300,24 +320,13 @@ class InvestmentController extends Controller
                 }
             }
 
-                $memberac = MemberAccount::where('member_id',$id)->first();
-           // $memberaccount = MemberAccount::find($memberac->id);
-            if ($memberac==null){
-                $memberaccount = new MemberAccount();
-                $memberaccount->member_id=$id;
-                $memberaccount->return_investment=$investmentReturnAmount;
-                $memberaccount->rest_investment=$investmentReturnAmount;
-                $memberaccount->save();
+            $interest = ($investmentAmount * $interestRate) / 100;
+            $investmentReturnAmount = $investmentAmount + round($interest);
 
-            }else{
-                $interest = ($investmentAmount * $interestRate) / 100;
-                $investmentReturnAmount = $investmentAmount + round($interest);
-
-                $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
-                $memberaccount->return_investment=$investmentReturnAmount;
-                $memberaccount->rest_investment=$investmentReturnAmount;
-                $memberaccount->save();
-            }
+            $memberaccount = MemberAccount::where('member_id',$investment->member->id)->first();
+            $memberaccount->return_investment=$investmentReturnAmount;
+            $memberaccount->rest_investment=$investmentReturnAmount;
+            $memberaccount->save();
 
 
             $investment->disburse_date = date('Y-m-d',time());

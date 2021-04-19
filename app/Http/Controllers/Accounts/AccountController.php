@@ -6,6 +6,7 @@ use App\Accounts\Cash;
 use App\Accounts\Penalty;
 use App\Http\Controllers\Controller;
 use App\Loan_Investment\InvestmentReturnInstallment;
+use App\Loan_Investment\LoanAdjustment;
 use App\Member_model\Member;
 use App\Member_model\MemberAccount;
 use App\Member_model\Saving;
@@ -156,6 +157,7 @@ class AccountController extends Controller
             ->where('status','!=',"2")
             ->where('status','!=',"1")
             ->get();
+
             $pnalty = $request->PenaltyAmount / count($investmentcount);
         for ($i=0; count($investmentcount) > $i; $i++){
             $data = new Penalty();
@@ -172,7 +174,6 @@ class AccountController extends Controller
             $allinvestment->save();
         }
 
-
         $notification = array(
             'message' => 'Penalty info has been saved successfully!',
             'alert-type' => 'success'
@@ -184,7 +185,45 @@ class AccountController extends Controller
 
     public function AdjustInvestment(Request $request,$id)
     {
-        dd($request);
+
+        if($request->has('SavingAmountclose')){
+            $savingdata = Saving::where('member_id',$id)->first();
+            $cash = new Cash();
+            $cash->date = date('Y-m-d',time());
+            $cash->description = 'Saving Withdrawal under '.$savingdata->member->name;
+            $cash->cr = number_format(intval($request->SavingAmountclose),'2','.','');
+            $cash->save();
+
+            $saving= Saving::find($id);
+            $saving->savings_windrow= $savingdata->savings_windrow + intval($request->SavingAmountclose);
+            $saving->savings_blanch = $savingdata->savings_blanch - intval($request->SavingAmountclose);
+            $saving->save();
+
+            $memberac = MemberAccount::where('member_id',$id)->first();
+            $memberaccount= MemberAccount::find($memberac->id);
+            $memberaccount->saving_amount= $memberaccount->saving_amount - intval($request->SavingAmountclose);
+            $memberaccount->save();
+
+        }
+
+        $Installment_dueAmount = $request->Installment_dueAmount;
+        $Payment = $request->Payment_amount;
+        $savingamount = $request->SavingAmountclose;
+        $discount = $request->discountAmount;
+        $investno = $request->investnodata;
+
+        $loanadjust = new LoanAdjustment();
+      $data =   $loanadjust->LoanAdjustmentFinal($id,$Installment_dueAmount,$Payment,$discount,$savingamount,$investno);
+
+        if ($data=="Done"){
+            $notification = array(
+                'message' => 'Loan Adjust has been Update successfully!',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('member.accounts')->with($notification);
+        }
+
     }
 
 }

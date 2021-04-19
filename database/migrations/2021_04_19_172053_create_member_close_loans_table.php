@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMemberAccountsTable extends Migration
+class CreateMemberCloseLoansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateMemberAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_accounts', function (Blueprint $table) {
+        Schema::create('member_close_loans', function (Blueprint $table) {
             $table->id();
             $table->integer('member_id');
-            $table->string('saving_id')->nullable();
-            $table->string('dps_id')->nullable();
+            $table->string('invest_no');
             $table->string('return_investment')->nullable();
             $table->string('investment_pay')->nullable();
             $table->integer('discount_payment')->default(0);
-            $table->string('rest_investment')->nullable();
-            $table->string('saving_amount')->nullable();
-            $table->string('dps_amount')->nullable();
+            $table->string('saving_close')->default(0);
             $table->timestamps();
         });
     }
@@ -35,6 +32,6 @@ class CreateMemberAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_accounts');
+        Schema::dropIfExists('member_close_loans');
     }
 }
