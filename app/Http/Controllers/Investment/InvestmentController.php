@@ -25,6 +25,7 @@ class InvestmentController extends Controller
     public function AddInvestment(Request $request){
 
         $member = Member::where('slag',$request->selected_member)->first();
+
         if ((count($member->guardians)) > 0){
             $this->validate($request,[
                 'selected_member' => 'required',
@@ -142,6 +143,7 @@ class InvestmentController extends Controller
         $investment->save();
 
 
+
         if($request->has('guardian_name')) {
             // insert guardian
             for ($a = 0; $a < $dataCount; $a++) {
@@ -171,6 +173,15 @@ class InvestmentController extends Controller
                 $guardianNid->nid_no = $request->guardian_nid_no[$a];;
                 $guardianNid->guardian_id = $guardian;
                 $guardianNid->save();
+            }
+        }
+
+        if(!$request->has('guardian_name')) {
+            $members = Member::where('slag',$request->selected_member)->first();
+            foreach ($members->guardians as $guardian){
+                $guardianData = Guardian::find($guardian->id);
+                $guardianData->investment_for = $investmentNo;
+                $guardianData->save();
             }
         }
 

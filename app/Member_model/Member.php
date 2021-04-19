@@ -60,7 +60,9 @@ class Member extends Model
         return $this->hasOne('App\Member_model\Nominee');
     }
 
-
-
+    public function memberCloseLoans()
+    {
+        return $this->hasMany('App\Member_model\MemberCloseLoan');
+    }
 
 }

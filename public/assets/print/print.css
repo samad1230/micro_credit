@@ -1,0 +1,122 @@
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Tahoma";
+    }
+
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    @media print {
+        @media print {
+            #printbtn {
+                display :  none;
+            }
+        }
+
+        @media print {
+            #goBack {
+                display :  none;
+            }
+        }
+        @media print {
+            #closebtn {
+                display :  none;
+            }
+        }
+        .page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+
+        .page {
+            width: 20cm;
+            padding: 29px;
+            margin: 0cm auto;
+            background: white;
+            max-height: 8.5in;
+        }
+
+    }
+
+    .page {
+        width: 20cm;
+        padding: 29px;
+        margin: 0cm auto;
+        background: white;
+        max-height: 8.5in;
+    }
+
+    .subpage {
+        padding: 1cm;
+        border: 5px red solid;
+        height: auto;
+        outline: 2cm #FFEAEA solid;
+    }
+
+    .companydata{
+        text-align: center;
+    }
+    .customerdata h5{
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .page .companydata {
+        padding: 2px 0;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #3989c6;
+        text-align: center;
+    }
+    .orderdata{
+        padding: 10px;
+    }
+    .orderdata thead{
+        text-align: center;
+    }
+    .orderdata tbody{
+        text-align: center;
+    }
+    .customer_account_left{
+        text-align: left;
+        border: 1px solid;
+        border-radius: 9px;
+        width: 80%;
+        margin-top: 11px;
+        margin-left: 34px;
+        padding: 9px;
+    }
+    
+    .customer_account {
+        text-align: right;
+        border: 1px solid;
+        border-radius: 9px;
+        width: 80%;
+        margin-top: 11px;
+        margin-left: 67px;
+        padding: 9px;
+    }
+    .footer_list .cust h6{
+        text-align: right;
+        text-decoration: underline;
+        padding: 10px;
+        margin-top: 50px;
+    }
+
+    .footer_list footer{
+        text-align: center;
+    }

@@ -46,7 +46,7 @@
                                         <button type="button" class="btn btn-success btn-sm savingcollectionBtn" id="{{ $member->id }}">Saving</button>
 
                                         <a href="#">
-                                            <button type="button" class="btn btn-warning btn-sm">{{ ucwords('withdraw') }}</button>
+                                            <button type="button" class="btn btn-warning btn-sm savingwithrwal" id="{{$member->id}}">{{ ucwords('withdraw') }}</button>
                                         </a>
                                         <a href="{{ route('saving.show',$member->id) }}">
                                             <button type="button" class="btn btn-info btn-sm">{{ ucwords('view') }}</button>
@@ -128,6 +128,83 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="SavingCollectionwithrwal" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Saving Withdrawal</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="saving_Withdrawal_data" method="POST"  enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Member Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_namesaving" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class=" " for="">Savings No</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="saving" class="form-control" id="Savings_no" placeholder="Savings No" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Savings Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="SavingsAmount" class="form-control" id="SavingsAmount" placeholder="Savings Amount" onkeyup="checkFunction()" readonly="" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">Withdrawal Amount</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" name="SavingsWithdrawalAmount" class="form-control" id="WithdrawalAmount" placeholder="Withdrawal Amount" onchange="checkFunction()" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" id="saveidbtn" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('page-script')
@@ -156,6 +233,22 @@
             });
             $("#SavingCollection").modal('show');
 
+        });
+        $(function () {
+            $('.savingwithrwal').on('click', function () {
+                var savingid = $(this).attr('id');
+                $.ajax({
+                    type: 'GET',
+                    url: '/SavingIdData/' + savingid,
+                    success: function (data) {
+                        $("#Savings_no").val(data.savingno);
+                        $("#member_namesaving").val(data.membername);
+                        $("#SavingsAmount").val(data.savingamount);
+                        $('.saving_Withdrawal_data').attr('action', '/SavingWithdrawalAmount/' + savingid);
+                    }
+                });
+                $("#SavingCollectionwithrwal").modal('show');
+            });
         });
     </script>
 @endsection

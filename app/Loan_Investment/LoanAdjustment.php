@@ -32,8 +32,9 @@ class LoanAdjustment extends Model
        $loanClose = new MemberCloseLoan();
        $loanClose->member_id=$memberac->id;
        $loanClose->invest_no=$investments->investment_no;
-       $loanClose->return_investment=$memberaccount->return_investment+$penalty;
+       $loanClose->return_investment=$memberaccount->return_investment;
        $loanClose->investment_pay=$memberac->investment_pay + $Payment;
+       $loanClose->penalty=$penalty;
        $loanClose->discount_payment=$discount;
        $loanClose->saving_close=$SavingAmountclose;
        $loanClose->save();

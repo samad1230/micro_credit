@@ -12,6 +12,11 @@ class MemberCloseLoan extends Model
 'return_investment',
 'investment_pay',
 'discount_payment',
+'penalty',
 'saving_close',
    ];
+
+    public function member(){
+        return $this->belongsTo(Member::class);
+    }
 }

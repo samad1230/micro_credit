@@ -1,0 +1,184 @@
+@media print {
+
+    @media print {
+        #printbtn {
+            display :  none;
+        }
+    }
+
+    @media print {
+        #goBack {
+            display :  none;
+        }
+    }
+    @media print {
+        #closebtn {
+            display :  none;
+        }
+    }
+
+
+    @page {
+        size: A4;
+        font-size: 16pt;
+    }
+    html, body {
+        height: auto;
+        font-size: 16pt; /* changing to 10pt has no impact */
+    }
+
+    @media print {
+        .page {
+            size: A4;
+            font-size: 13pt;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+    }
+    .product {
+        font-size: 13pt;
+        overflow: hidden!important
+    }
+
+    .product>div:last-child {
+        page-break-before: always
+    }
+    #product{
+        padding: 0px;
+        width: 100%;
+    }
+
+    .product {
+        width: 100%;
+        position: relative;
+        background-color: #FFF;
+        padding: 0px 13px;
+        margin-top: -22px;
+    }
+
+    .product {
+        font-size: 13pt;
+        overflow: hidden!important
+    }
+    table {
+        font-family: arial, sans-serif;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .product table td,.product table thead th {
+        padding: 4px;
+        text-align: center;
+        background: #fff;
+        border-bottom: 1px solid #0c0c0c;
+    }
+
+    .product table td h3 {
+        margin: 0;
+        font-weight: 400;
+        color: #3989c6;
+        font-size: 1.2em
+    }
+
+    .product table .qty,.product table .total,.product table .unit {
+        text-align: center;
+        font-size: 1.2em
+    }
+
+    .product table tfoot td {
+        text-align: right;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border-top: 1px solid #aaa
+    }
+    .product .printhead{
+        text-align: center;
+        margin: 24px;
+    }
+    .product .headdata{
+        padding: 10px;
+        margin-left: 24px;
+        margin-right: 28px;
+    }
+
+
+}
+.product .headdata{
+    padding: 10px;
+    margin-left: 24px;
+    margin-right: 28px;
+}
+.product {
+    font-size: 13pt;
+    overflow: hidden!important
+}
+.product .printhead{
+    text-align: center;
+    margin: 24px;
+}
+.product>div:last-child {
+    page-break-before: always
+}
+#product{
+    padding: 0px;
+    width: 100%;
+}
+
+.product {
+    width: 100%;
+    position: relative;
+    background-color: #FFF;
+    padding: 0px 13px;
+    margin-top: -22px;
+}
+
+.product {
+    font-size: 13pt;
+    overflow: hidden!important
+}
+table {
+    font-family: arial, sans-serif;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.product table td,.product table thead th {
+    padding: 4px;
+    text-align: center;
+    background: #fff;
+    border-bottom: 1px solid #0c0c0c;
+}
+
+.product table td h3 {
+    margin: 0;
+    font-weight: 400;
+    color: #3989c6;
+    font-size: 1.2em
+}
+
+.product table .qty,.product table .total,.product table .unit {
+    text-align: center;
+    font-size: 1.2em
+}
+
+.product table tfoot td {
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-top: 1px solid #aaa
+}

@@ -20,28 +20,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Loan_Investment/LoanAdjustment.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Member_model/MemberCloseLoan.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_19_172053_create_member_close_loans_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188289001618828900qod2.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188331471618833147j5af.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161883887416188388748ip1.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/1618832938161883293893vd.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16188388181618838818bhzl.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1618832938161883293893vd.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16188388181618838818bhzl.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Admin_model/CompanyProfile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/PrintController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/SearchController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_20_031146_create_company_profiles_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161886012616188601261bfn.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188601261618860126hy94.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188608021618860802szjy.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/161886089216188608929ksj.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16188600531618860053vait.PIB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16188607611618860761q5fp.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16188608561618860856zqbx.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16188600531618860053vait.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16188607611618860761q5fp.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16188608561618860856zqbx.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/company_profile/16188607611618860761q5fp.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/ajax.jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/fullprint.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/print/print.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/Closeing_Investment.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/close_invest_details.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/single_penaty_show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Investment/user_penaty_detail.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Print_page/collection_status_print.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Report_page/investment_status_view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print_layouts/footer.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print_layouts/header.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/print_layouts/print_master_layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/CheckActivity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/MemberAccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_25_003046_create_member_accounts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_accounts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Loan_Investment/LoanAdjustment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Loan_Investment/LoanAdjustment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Member_model/MemberCloseLoan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/MemberCloseLoan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_19_172053_create_member_close_loans_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_19_172053_create_member_close_loans_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/member_saving.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/member_saving.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,16 +206,20 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\MikroLoad\public\assets" />
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views" />
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Report_page" />
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Member_pages" />
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Investment" />
-      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Register_page" />
-      <recent name="D:\xampp\htdocs\MikroLoad\public\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Investment" />
     </key>
   </component>
   <component name="RunManager">
@@ -239,7 +263,8 @@
       <workItem from="1618640861310" duration="123000" />
       <workItem from="1618641048675" duration="4571000" />
       <workItem from="1618724017999" duration="2000" />
-      <workItem from="1618819811511" duration="19166000" />
+      <workItem from="1618819811511" duration="19253000" />
+      <workItem from="1618851929706" duration="16784000" />
     </task>
     <servers />
   </component>

@@ -20,6 +20,7 @@ class CreateMemberCloseLoansTable extends Migration
             $table->string('return_investment')->nullable();
             $table->string('investment_pay')->nullable();
             $table->integer('discount_payment')->default(0);
+            $table->integer('penalty')->default(0);
             $table->string('saving_close')->default(0);
             $table->timestamps();
         });

@@ -154,6 +154,7 @@ class InvestmentReturnInstallmentController extends Controller
                 $loanClose->invest_no=$memberdata->investment->investment_no;
                 $loanClose->return_investment=$memberaccount->return_investment;
                 $loanClose->investment_pay=$memberaccount->investment_pay;
+                $loanClose->penalty=$penalty;
                 $loanClose->discount_payment=0;
                 $loanClose->saving_close=0;
                 $loanClose->save();

@@ -14,9 +14,11 @@ use App\Member_model\Guardian;
 use App\Member_model\Member;
 
 use App\Member_model\MemberAccount;
+use App\Member_model\MemberCloseLoan;
 use App\Member_model\Saving;
 use App\Member_model\SavingAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainIndexController extends Controller
 {
@@ -111,7 +113,7 @@ class MainIndexController extends Controller
         $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
             ->where('status','!=',"2")
             ->where('status','!=',"1")
-            ->orderBy('date','DESC')->get();
+            ->orderBy('date','DESC')->paginate(20);
 
         $today_installment_due = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
             ->where('status','!=','1')
@@ -176,10 +178,57 @@ class MainIndexController extends Controller
         return view('Member_pages.single_member_Accounts_details',compact('member','investment','investpaid','investdue','investpanalti','totaldue','totalpaid','totalpnalti'));
     }
 
+
+    public function InvestCloseDetails()
+    {
+        $members = MemberCloseLoan::orderBy('id','DESC')->paginate(15);
+        return view('Investment.Closeing_Investment',compact('members'));
+    }
+
+    public function CloseLoneDetailsView($investmentNo)
+    {
+        $investment = Investment::where('investment_no',$investmentNo)->first();
+        $installments = $investment->iRInstallments()->orderBy('id','asc')->get();
+        $installmentlastdate = $investment->iRInstallments()->orderBy('id','DESC')->first();
+
+        $panaltyBalance = 0;
+        foreach ($investment->member->penaltys as $data){
+            $panaltyBalance += $data->penalty;
+        }
+
+        $restamount = 0;
+        $collection_amount= 0;
+        foreach ($installments as $last){
+            $restamount += $last->rest_amount;
+            $collection_amount += $last->collection_amount;
+        }
+
+        $closeingdata = MemberCloseLoan::where('invest_no',$investmentNo)->first();
+
+        return view('Investment.close_invest_details',compact('investment','installments','installmentlastdate','panaltyBalance','restamount','collection_amount','closeingdata'));
+    }
+
     public function DetailsPenalty()
     {
-        $members = MemberAccount::orderBy('id','DESC')->paginate(15);
-        return view('Member_pages.member_accounts',compact('members'));
+        $penaltydata = Penalty::select('member_id', DB::raw('SUM(penalty) as penaltyamount '))
+            ->groupBy('member_id')
+            ->get();
+        return view('Investment.user_penaty_detail',compact('penaltydata'));
+    }
+
+    public function SinglePenaltyShow($id)
+    {
+        $penaltydata = Penalty::where('member_id',$id)->get();
+        return view('Investment.single_penaty_show',compact('penaltydata'));
+    }
+
+    public function CollectionStatus()
+    {
+        $todayDate = time();
+        $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
+            ->where('status','!=',"1")
+            ->orderBy('date','DESC')->paginate(20);
+        return view('Report_page.investment_status_view',compact('installments'));
     }
 
 
