@@ -21,6 +21,7 @@ class CreatePenaltiesTable extends Migration
             $table->integer('penalty');
             $table->string('date');
             $table->integer('user_id');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

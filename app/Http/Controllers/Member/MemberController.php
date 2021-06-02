@@ -80,6 +80,7 @@ class MemberController extends Controller
         $member->name=$request->name;
         $member->mobile=$request->phone;
         $member->father_name=$request->father_name;
+        $member->husband_name=$request->husband_name;
         $member->mother_name=$request->mothername;
         $member->occupation=$request->income_source;
         $member->age=$request->memberage;
@@ -184,6 +185,7 @@ class MemberController extends Controller
         $member->mobile=$request->phone;
         $member->ledgerid=$request->ledgerid;
         $member->father_name=$request->father_name;
+        $member->husband_name=$request->husband_name;
         $member->occupation=$request->income_source;
         $member->present_address=$request->present_address;
         $member->permanent_address=$request->permanent_address;

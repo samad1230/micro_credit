@@ -1,5 +1,8 @@
 @extends('layouts.master-layouts')
 @section('page-css')
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+@endsection
+@section('page-css')
     <style>
         .rightdata{
             float: right;
@@ -44,9 +47,9 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><b>Loan Amount : </b>ট {{ $investment->investment_return_amount }}</li>
-                                        <li class="list-group-item"><b>Paid Money : </b>ট {{ $investpaid }}<span class="rightdata">{{$totalpaid}}</span></li>
-                                        <li class="list-group-item"><b>Blanch : </b> ট {{ $investdue }} <span class="rightdata">{{$totaldue}}</span></li>
-                                        <li class="list-group-item"><b>Penalty : </b>ট {{ $investpanalti }}<span class="rightdata">{{$totalpnalti}}</span></li>
+                                        <li class="list-group-item"><b>Paid Money : </b>ট {{ $investpaid }}<span class="rightdata">{{" Paid Installment: "}}{{$totalpaid}}</span></li>
+                                        <li class="list-group-item"><b>Blanch : </b> ট {{ $investdue }} <span class="rightdata">{{" Due Installment: "}}{{$totaldue}}</span></li>
+                                        <li class="list-group-item"><b>Penalty : </b>ট {{ $investpanalti }}<span class="rightdata"></span></li>
                                         <li class="list-group-item leftdata"><b>Last Blanch : </b>ট {{ $investdue + $investpanalti }}</li>
 
                                         <li class="list-group-item"><b>Saving Amount : </b>{{ @$member->memberAccount->saving_amount }}</li>
@@ -68,8 +71,65 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        @if($investment->status)
+                            <h5 class="text-muted font-weight-bold"><u>{{ ucwords('installment info') }}</u></h5>
+                            <table class="table table-striped table-hover" id="allInstallmentsTable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">{{ ucwords('voucher no') }}</th>
+                                    <th class="text-center">{{ ucwords('installment date') }}</th>
+                                    <th class="text-center">{{ ucwords('installment') }}</th>
+                                    <th class="text-center">{{ ucwords('collection') }}</th>
+                                    <th class="text-center">{{ ucwords('balance') }}</th>
+                                    <th class="text-center">{{ ucwords('status') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($installments as $installment)
+                                    @php
+
+                                        $todayDate = time();
+                                        $today = date('Y-m-d',$todayDate);
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $installment->voucher_no }}</td>
+                                        <td>{{ date('d-m-y',strtotime($installment->date)) }}</td>
+                                        <td>{{ number_format($installment->installment_amount,'2','.',',') }}</td>
+                                        <td>
+                                            @if($installment->status =='1')
+                                                {{ number_format($installment->collection_amount,'2','.',',') }}
+                                            @elseif(date('Y-m-d',strtotime($installment->date)) <= $today && $installment->status !='2')
+                                                <button type="button" class="btn btn-warning btn-sm collectionBtnModel" id="{{ $installment->voucher_no }}">Collect</button>
+                                                <button type="button" class="btn btn-danger btn-sm penaltyfine" id="{{ $installment->voucher_no }}">{{ucwords('penalty')}}</button>
+                                            @elseif($installment->status =='2')
+                                                <button type="button" class="btn btn-warning btn-sm collectionBtnModel" id="{{ $installment->voucher_no }}">Collect</button>
+                                            @else
+                                                <button type="button" class="btn btn-warning btn-sm collectionBtnModel" id="{{ $installment->voucher_no }}">Collect</button>
+                                            @endif
+                                        </td>
+                                        <td>{{ number_format($installment->rest_amount,'2','.',',') }}</td>
+                                        <td>
+                                            @if($installment->status =='1' && $installment->rest_amount=='0' )
+                                                {!! '<b class="text-success">'.strtoupper('paid').'</b>' !!}
+                                            @elseif($installment->status =='0')
+                                                {!! '<b class="text-danger">'.strtoupper('due').'</b>' !!}
+                                            @elseif($installment->status =='1' && $installment->rest_amount !='0')
+                                                {!! '<b class="text-primary">'.strtoupper('unpaid').'</b>' !!}
+                                            @else
+                                                {!! '<b class="text-danger">'.strtoupper('penalty add').'</b>' !!}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
+
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -344,9 +404,148 @@
     </div>
 
 
+    <div class="modal fade" id="InvestmentCollection" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Payment Collection</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="paymentCollection_data" method="POST"  enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="memberName">{{ ucwords('member name') }}</label>
+                                <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_name_collection" readonly>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="memberPhone">{{ ucwords('Voucher No') }}</label>
+                                <input type="text" name="voucher_no" class="form-control" id="voucher_collection" placeholder="Voucher No" readonly>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="memberPhone">{{ ucwords('due voucher') }}</label>
+                                <input type="text" class="form-control" id="due_voucher_amount" placeholder="Voucher Count" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="memberName">{{ ucwords('installment *') }}</label>
+                                <input type="text" name="installment_amount" class="form-control" placeholder="Installment Amount" id="installment_amount" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="memberPhone">{{ ucwords('previous installment *') }}</label>
+                                <input type="text" name="previusdue" class="form-control" id="due_installment" placeholder="Installment Due" readonly>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="memberPhone">{{ ucwords('penalty due *') }}</label>
+                                <input type="text" name="penaltydue" class="form-control" id="penalty_due" placeholder="Penalty Due Amount " readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="memberName"><b>{{ ucwords('installment collection*') }}</b></label>
+                                <input type="text" name="collection" class="form-control" placeholder="Payment Collection" autocomplete="off" id="collection_pay">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="memberPhone"><b>{{ ucwords('penalty collection *') }}</b></label>
+                                <input type="text" name="penalty_collection" class="form-control"  placeholder="Penalty Collection" autocomplete="off">
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Penaltyupdate" tabindex="1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog model-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Update Penalty</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="" class="editsupplier_data" method="POST"  enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class=" " for="">Member Name</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" name="name" class="form-control" placeholder="Member Name" id="member_name_penalty" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class=" " for="">Voucher No</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" name="voucher" class="form-control" id="voucher_no" placeholder="Voucher No" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="" for="Contact">Penalty Amount</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" name="PenaltyAmount" class="form-control"  placeholder="Penalty Amount" autocomplete="off" id="penalty_amount" autofocus>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('page-script')
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/payment_saving.js') }}"></script>
     <script src="{{asset('assets/js/scripts/form.validation.script.min.js')}}"></script>
     <script !src="">
         $(function () {
@@ -437,5 +636,50 @@
                 $('#submit_data').attr('disabled',false);
             }
         }
+    </script>
+
+    <script !src="">
+        $(document).on("click", ".penaltyfine", function(e){
+            e.preventDefault();
+            var voucherNo = $(this).attr('id');
+            var voucher = voucherNo.replace('#', '');
+            $.ajax({
+                type: 'GET',
+                url:'/Penalty/Installment/amount/'+voucher,
+
+                success: function (data) {
+                    $("#voucher_no").val(data.voucher_no);
+                    $("#member_name_penalty").val(data.membername);
+                    document.getElementById("penalty_amount").focus();
+                    $('.editsupplier_data').attr('action', '/PanaltiInsert/'+voucher);
+                }
+            });
+
+            $("#Penaltyupdate").modal('show');
+
+        });
+
+
+        $(document).on("click", ".collectionBtnModel", function(e){
+            e.preventDefault();
+            var voucherNo = $(this).attr('id');
+            var voucher = voucherNo.replace('#', '');
+            $.ajax({
+                type: 'GET',
+                url:'/Collection/Installment/amount/'+voucher,
+                success: function (data) {
+                    $("#member_name_collection").val(data.membername);
+                    $("#voucher_collection").val(data.voucher_no);
+                    $("#due_voucher_amount").val(data.vouchercount);
+                    $("#installment_amount").val(data.installment).css({"color": "blue", "font-weight": "bold"});
+                    $("#due_installment").val(data.previusdue).css({"color": "red", "font-weight": "bold"});
+                    $("#penalty_due").val(data.penaltydue).css({"color": "purple", "font-weight": "bold"});
+                    document.getElementById("collection_pay").focus();
+                    $('.paymentCollection_data').attr('action', '/Investment/Return-Collection/');
+                }
+            });
+            $("#InvestmentCollection").modal('show');
+
+        });
     </script>
 @endsection

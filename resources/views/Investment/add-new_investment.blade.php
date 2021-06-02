@@ -145,6 +145,8 @@
                                 </div>
                             </div>
 
+
+
                             <div class="form-row text-center">
                                 <button class="btn btn-primary savebtn" type="submit">Submit form</button>
                             </div>
@@ -264,13 +266,28 @@
                     $('.investmentOption').empty();
 
                 }else if(selected == 'product'){
+                    $.ajax({
+                        type: 'GET',
+                        url:'/Product/Data',
+                        success: function (data) {
+                            var select="";
+                            select += '<option value="">Select Product</option>';
+                            $.each(data, function (idx, obj) {
+                                select += ('<option value="'+ obj.id +'">' + obj.product_name + '</option>');
+                            });
+                            $("#product_id_add").html(select);
+
+                        }
+                    });
+
                     $('.investmentOption').empty().append(
                         '   <div class="form-row col-md-12">\n' +
-
                         '       <div class="col-md-4 mb-4">\n' +
-                        '            <label for="ProductName">Product</label>\n' +
-                        '              <input class="form-control" name="productname" id="ProductName" type="text" placeholder="Product Name" value="" onkeyup="checkFunction()">\n' +
-                        '        </div>\n' +
+                        '           <label for="downPayment">Product Name</label>\n' +
+                        '           <select class="form-control select2" name="product_id" id="product_id_add" >\n' +
+
+                        '           </select>\n' +
+                        '       </div>\n' +
                         '        <div class="col-md-4 mb-4">\n' +
                         '              <label for="downPayment">Product Details</label>\n' +
                         '              <input class="form-control" name="productdetails" id="product_details" type="text" placeholder="Product Details" value="" onkeyup="checkFunction()">\n' +
@@ -281,6 +298,19 @@
                         '       </div>\n' +
                         '   </div>'
                     );
+
+                    $('#product_id_add').on('change',function (){
+                        var productid = $(this).val();
+                        $.ajax({
+                            type: 'GET',
+                            url:'/Product/Data/'+productid,
+                            success: function (data) {
+                                $('#product_details').val(data.product_details);
+                                $('#investmentAmount').val(data.sell_price);
+                            }
+                        });
+                    });
+
                 }else{
                     location.reload();
                 }

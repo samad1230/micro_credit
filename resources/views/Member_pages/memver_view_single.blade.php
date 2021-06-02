@@ -30,6 +30,7 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><b>Father Name : </b>{{ ucwords($member->father_name) }}</li>
+                                        <li class="list-group-item"><b>Husband Name : </b>{{ ucwords($member->husband_name) }}</li>
                                         <li class="list-group-item"><b>Phone : </b>{{ $member->mobile }}</li>
                                         <li class="list-group-item"><b>Source of Income : </b>{{ ucwords($member->occupation) }}</li>
                                         <li class="list-group-item"><b>Join Date : </b>{{ $member->join_date }}</li>
@@ -90,25 +91,35 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="form-row">
-                                    <div class="col-md-5 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="memberName">{{ ucwords('member name*') }}</label>
                                         <input class="form-control" name="name" id="memberName" type="text" placeholder="{{ ucwords('name') }}" value="{{ $member->name }}" required="required" autofocus>
                                         <div class="invalid-tooltip">
                                             {{ ucwords('member name is required.') }}
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="memberPhone">{{ ucwords('phone number*') }}</label>
-                                        <input class="form-control" name="phone" id="memberPhone" type="tel" placeholder="{{ ucwords('phone number') }}" value="{{ $member->mobile }}" required="required">
-                                        <div class="invalid-tooltip">
-                                            {{ ucwords('member phone number is required.') }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="fatherName">{{ ucwords('father name*') }}</label>
                                         <input class="form-control" name="father_name" id="fatherName" type="text" placeholder="{{ ucwords('father name') }}" value="{{ $member->father_name }}" required="required">
                                         <div class="invalid-tooltip">
                                             {{ ucwords('member father name is required.') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="memberName">{{ ucwords('Husband name*') }}</label>
+                                        <input class="form-control" name="husband_name" id="husbandname" type="text" placeholder="{{ ucwords('Husband name') }}" value="{{ $member->husband_name }}" required="required" autofocus>
+                                        <div class="invalid-tooltip">
+                                            {{ ucwords('member Husband name is required.') }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="memberPhone">{{ ucwords('phone number*') }}</label>
+                                        <input class="form-control" name="phone" id="memberPhone" type="tel" placeholder="{{ ucwords('phone number') }}" value="{{ $member->mobile }}" required="required">
+                                        <div class="invalid-tooltip">
+                                            {{ ucwords('member phone number is required.') }}
                                         </div>
                                     </div>
                                 </div>

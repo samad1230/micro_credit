@@ -21,6 +21,7 @@
                                 <th class="text-center">{{ ucwords('date') }}</th>
                                 <th class="text-center">{{ ucwords('voucher no') }}</th>
                                 <th class="text-center">{{ ucwords('amount') }}</th>
+                                <th class="text-center">{{ ucwords('status') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,6 +34,14 @@
                                     <td>{{ $member->date}}</td>
                                     <td>{{ $member->voucher_no}}</td>
                                     <td>{{ $member->penalty}}</td>
+                                    <td>
+                                        @if($member->status==1)
+                                            {!! '<b class="text-success">'.strtoupper('paid').'</b>' !!}
+                                        @else
+                                            {!! '<b class="text-danger">'.strtoupper('due').'</b>' !!}
+                                        @endif
+
+                                    </td>
                                 </tr>
                                 @php
                                     $i++;

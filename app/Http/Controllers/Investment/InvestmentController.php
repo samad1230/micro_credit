@@ -12,6 +12,7 @@ use App\Loan_Investment\InvestmentReturnInstallment;
 use App\Member_model\Guardian;
 use App\Member_model\Member;
 use App\Member_model\MemberAccount;
+use App\Product_model\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -192,9 +193,16 @@ class InvestmentController extends Controller
             $product = new InvestmentProduct();
             $product->member_id=$member->id;
             $product->investment_no=$investmentNo;
-            $product->product=$request->productname;
+            $product->product=$request->product_id;
             $product->product_details=$request->productdetails;
             $product->save();
+
+
+            $data = Product::find($request->product_id);
+            $data->investment_no=$investmentNo;
+            $data->member_id=$member->id;
+            $data->status="1";
+            $data->save();
         }
 
         if($request->has('downpayment')){

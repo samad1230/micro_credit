@@ -48,15 +48,20 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-3 mb-3">
+                                    <label for="fatherName">{{ ucwords('husband name ') }}<span class="tx-danger">* </span></label>
+                                    <input class="form-control" name="husband_name" id="husbandName" type="text" placeholder="{{ ucwords('husband name') }}" value="" >
+                                </div>
+                                <div class="col-md-3 mb-3">
                                     <label for="memberMotherName">{{ ucwords('mother name *') }}</label>
                                     <input class="form-control" name="mothername" id="memberMotherName" type="text" placeholder="Mother Name" value="" required="required">
                                     <div class="invalid-tooltip">
                                         {{ ucwords('member mother name is required.') }}
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="memberIncomeSource">{{ ucwords('source of income ') }}<span class="tx-danger">* </span></label>
+
+                                <div class="col-md-2 mb-3">
+                                    <label for="memberincomeSource">{{ ucwords('source of income ') }}<span class="tx-danger">* </span></label>
                                     <select class="form-control" name="income_source" id="memberIncomeSource" required="required">
                                         <option value="">Select Occupation</option>
                                         <option value="Business">Business</option>

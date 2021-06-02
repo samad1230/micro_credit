@@ -1,7 +1,8 @@
 $(function () {
     $('#allInstallmentsTable').DataTable();
 
-    $('.collectionBtn').on('click',function () {
+    $(document).on('click', '.collectionBtn', function() {
+    //$('.collectionBtn').on('click',function () {
         var voucherNo = $(this).attr('id');
         swal({
             content: {
@@ -51,7 +52,8 @@ $(function () {
             });
     });
 
-    $('.savingcollectionBtn').on('click',function () {
+    $(document).on('click', '.savingcollectionBtn', function() {
+    //$('.savingcollectionBtn').on('click',function () {
         var voucherNo = $(this).attr('id');
         swal({
             content: {

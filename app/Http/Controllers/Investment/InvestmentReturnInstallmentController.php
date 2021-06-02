@@ -25,160 +25,260 @@ class InvestmentReturnInstallmentController extends Controller
 
     public function installmentInsert(Request $request){
 
-        $memberdata = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no, 'status'=>"0"])->first();
-        $intallment = InvestmentReturnInstallment::where('investment_id',$memberdata->investment->id)->where('status',"0")->sum('rest_amount');
-        $penalty = Penalty::where('member_id',$memberdata->investment->member_id)->sum('penalty');
 
-        $installment = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no, 'status'=>"0"])->first();
+       $collection= $request->collection;
+       $previusdue= $request->previusdue;
+       $penalty_collection= $request->penalty_collection;
 
-        if($installment->rest_amount == intval($request->collection)){
+        $memberdata = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no])->first();
 
-            $installment->collection_amount = intval($request->collection);
-            $installment->rest_amount = 0;
-            $installment->status = "1";
-            $installment->save();
+        $intallment = InvestmentReturnInstallment::where('investment_id',$memberdata->investment->id)->where('status','!=','1')->sum('rest_amount');
 
-            $cash = new Cash();
-            $cash->date = date('Y-m-d',time());
-            $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
-            $cash->dr = number_format(intval($request->collection),'2','.','');
-            $cash->save();
+        $penalty = Penalty::where(['member_id'=>$memberdata->investment->member_id,'status'=>"0"])->sum('penalty');
+        $installment = InvestmentReturnInstallment::where(['voucher_no'=>$request->voucher_no])->first();
 
-            $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
-            $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
-            $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
-            $memberaccount->save();
+        if ($penalty_collection !=null){
 
-            $cashcollent = new Collection();
-            $cashcollent->voucher_no=$request->voucher_no;
-            $cashcollent->member_id=$installment->investment->member->id;
-            $cashcollent->date=date('Y-m-d',time());
-            $cashcollent->installment_amount=intval($request->collection);
-            $cashcollent->save();
+            $penaltydata =Penalty::where(['member_id'=>$memberdata->investment->member_id,'status'=>"0"])->first();
 
-            return response()->json('success');
+            if($penaltydata->penalty == intval($request->penalty_collection)){
 
-        } elseif ($installment->rest_amount > intval($request->collection)){
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Penalty Return taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->penalty_collection),'2','.','');
+                $cash->save();
 
-            $restAmount = $installment->rest_amount - intval($request->collection);
-            $installment->collection_amount = intval($request->collection);
-            $installment->rest_amount = $restAmount;
-            $installment->status = "1";
-            $installment->save();
+                $penaltydata->status = 1;
+                $penaltydata->save();
 
-            $cash = new Cash();
-            $cash->date = date('Y-m-d',time());
-            $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
-            $cash->dr = number_format(intval($request->collection),'2','.','');
-            $cash->save();
 
-            $nextInstallment = $installment->investment->iRInstallments()->where('status',"0")->orderBy('id','asc')->first();
-            $nextInstallment->rest_amount = $nextInstallment->rest_amount + $restAmount;
-            $nextInstallment->save();
+            }elseif($penaltydata->penalty > intval($request->penalty_collection)){
 
-            $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
-            $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
-            $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
-            $memberaccount->save();
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Penalty Return taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->penalty_collection),'2','.','');
+                $cash->save();
 
-            $cashcollent = new Collection();
-            $cashcollent->voucher_no=$request->voucher_no;
-            $cashcollent->member_id=$installment->investment->member->id;
-            $cashcollent->date=date('Y-m-d',time());
-            $cashcollent->installment_amount=intval($request->collection);
-            $cashcollent->save();
+                $restAmount = $penaltydata->penalty - intval($request->penalty_collection);
+                $penaltydata->penalty = $restAmount;
+                $penaltydata->status = 0;
+                $penaltydata->save();
 
-            return response()->json('success');
+            }else{
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Penalty Return taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->penalty_collection),'2','.','');
+                $cash->save();
 
-        }else{
+                $penaltydata->status = "1";
+                $penaltydata->save();
 
-            $installment->collection_amount = intval($request->collection);
-            $installment->rest_amount = 0;
-            $installment->status = "1";
-            $installment->save();
+                $advanceAmountpenalty =  intval($request->penalty_collection) - $penaltydata->penalty;
 
-            $cash = new Cash();
-            $cash->date = date('Y-m-d',time());
-            $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
-            $cash->dr = number_format(intval($request->collection),'2','.','');
-            $cash->save();
+                $nextpenaltydata = Penalty::where(['member_id'=>$memberdata->investment->member_id,'status'=>"0"])->orderBy('id','asc')->get();
 
-            $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
-            $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
-            $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
-            $memberaccount->save();
 
-            $cashcollent = new Collection();
-            $cashcollent->voucher_no=$request->voucher_no;
-            $cashcollent->member_id=$installment->investment->member->id;
-            $cashcollent->date=date('Y-m-d',time());
-            $cashcollent->installment_amount=intval($request->collection);
-            $cashcollent->save();
+                for ($v=0; $v < count($nextpenaltydata); $v++){
 
-            $advanceAmount =  intval($request->collection) - $installment->installment_amount;
-            $nextInstallments = $installment->investment->iRInstallments()->where('status',"0")->orderBy('id','asc')->get();
+                    if($advanceAmountpenalty == $nextpenaltydata[$v]->penalty){
+                        $penaltydata = $nextpenaltydata[$v];
+                        $penaltydata->status = "1";
+                        $penaltydata->save();
+                        break;
+                    }elseif ($advanceAmountpenalty > $nextpenaltydata[$v]->penalty){
+                        $penaltydata = $nextpenaltydata[$v];
+                        $penaltydata->status = "1";
+                        $penaltydata->save();
+                    }else{
+                        $penaltydata = $nextpenaltydata[$v];
+                        $penaltydata->penalty = $penaltydata->penalty - $advanceAmountpenalty;
+                        $penaltydata->status = "0";
+                        $penaltydata->save();
+                        break;
+                    }
 
-            for ($x=0; $x < count($nextInstallments); $x++){
+                    if (count($nextpenaltydata) != $v) {
+                        $advanceAmountpenalty = $advanceAmountpenalty - $nextpenaltydata[$v]->penalty;
+                    }
 
-                if($advanceAmount == $nextInstallments[$x]->rest_amount){
-                    $installment = $nextInstallments[$x];
-                    $installment->rest_amount = 0;
-                    $installment->status = "1";
-                    $installment->save();
-                    break;
-                }elseif ($advanceAmount > $nextInstallments[$x]->rest_amount){
-                    $installment = $nextInstallments[$x];
-                    $installment->rest_amount = 0;
-                    $installment->status = "1";
-                    $installment->save();
-                }else{
-                    $installment = $nextInstallments[$x];
-                    $installment->rest_amount = $installment->rest_amount - $advanceAmount;
-                    $installment->status = "0";
-                    $installment->save();
-                    break;
                 }
 
-                if (count($nextInstallments) != $x) {
-                    $advanceAmount = $advanceAmount - $nextInstallments[$x]->installment_amount;
-                }
             }
 
-            $intallmentTotal = $intallment + $penalty;
+        }
 
-            if ($intallmentTotal == intval($request->collection)){
-                $memberaccount= MemberAccount::find($memberdata->investment->member_id);
+        if ($request->collection !=null){
+            if($installment->rest_amount == intval($request->collection)){
 
-                $loanClose = new MemberCloseLoan();
-                $loanClose->member_id=$memberdata->investment->member_id;
-                $loanClose->invest_no=$memberdata->investment->investment_no;
-                $loanClose->return_investment=$memberaccount->return_investment;
-                $loanClose->investment_pay=$memberaccount->investment_pay;
-                $loanClose->penalty=$penalty;
-                $loanClose->discount_payment=0;
-                $loanClose->saving_close=0;
-                $loanClose->save();
+                $installment->collection_amount = intval($request->collection);
+                $installment->rest_amount = 0;
+                $installment->status = "1";
+                $installment->save();
 
-                $memberaccount->return_investment= 0;
-                $memberaccount->discount_payment= 0;
-                $memberaccount->rest_investment= 0;
-                $memberaccount->investment_pay= 0;
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->collection),'2','.','');
+                $cash->save();
+
+                $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
+                $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
+                $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
                 $memberaccount->save();
 
-                $invest = Investment::where('investment_no',$memberdata->investment->investment_no)->first();
-                $invest->status="2";
-                $invest->save();
+                $cashcollent = new Collection();
+                $cashcollent->voucher_no=$request->voucher_no;
+                $cashcollent->member_id=$installment->investment->member->id;
+                $cashcollent->date=date('Y-m-d',time());
+                $cashcollent->installment_amount=intval($request->collection);
+                $cashcollent->save();
 
-                $menber = Member::find($memberdata->investment->member_id);
-                $menber->status="0";
-                $menber->save();
+                // return response()->json('success');
 
-                Penalty::where('member_id',$memberdata->investment->member_id)->delete();
+            } elseif ($installment->rest_amount > intval($request->collection)){
+
+                $restAmount = $installment->rest_amount - intval($request->collection);
+                $installment->collection_amount = intval($request->collection);
+                $installment->rest_amount = $restAmount;
+                $installment->status = "1";
+                $installment->save();
+
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->collection),'2','.','');
+                $cash->save();
+
+                $nextInstallment = $installment->investment->iRInstallments()->where('status',"0")->orderBy('id','asc')->first();
+                $nextInstallment->rest_amount = $nextInstallment->rest_amount + $restAmount;
+                $nextInstallment->save();
+
+                $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
+                $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
+                $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
+                $memberaccount->save();
+
+                $cashcollent = new Collection();
+                $cashcollent->voucher_no=$request->voucher_no;
+                $cashcollent->member_id=$installment->investment->member->id;
+                $cashcollent->date=date('Y-m-d',time());
+                $cashcollent->installment_amount=intval($request->collection);
+                $cashcollent->save();
+
+                //return response()->json('success');
+
+            }else{
+
+                $installment->collection_amount = intval($request->collection);
+                $installment->rest_amount = 0;
+                $installment->status = "1";
+                $installment->save();
+
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Investment Return installment taken under '.$request->voucher_no;
+                $cash->dr = number_format(intval($request->collection),'2','.','');
+                $cash->save();
+
+                $memberaccount= MemberAccount::find($installment->investment->member->memberAccount->id);
+                $memberaccount->investment_pay= $memberaccount->investment_pay + intval($request->collection);
+                $memberaccount->rest_investment= $memberaccount->rest_investment - intval($request->collection);
+                $memberaccount->save();
+
+                $cashcollent = new Collection();
+                $cashcollent->voucher_no=$request->voucher_no;
+                $cashcollent->member_id=$installment->investment->member->id;
+                $cashcollent->date=date('Y-m-d',time());
+                $cashcollent->installment_amount=intval($request->collection);
+                $cashcollent->save();
+
+                $advanceAmount =  intval($request->collection) - $installment->installment_amount;
+
+                if ($collection > $previusdue){
+                    $nextInstallments = $installment->investment->iRInstallments()->where('status','!=',"1")->orderBy('id','asc')->get();
+                }elseif($collection < $previusdue){
+                    $nextInstallments = $installment->investment->iRInstallments()->where('status','!=',"1")->orderBy('id','asc')->get();
+                }else{
+                    $nextInstallments = $installment->investment->iRInstallments()->where('status',"0")->orderBy('id','asc')->get();
+                }
+
+                for ($x=0; $x < count($nextInstallments); $x++){
+
+                    if($advanceAmount == $nextInstallments[$x]->rest_amount){
+                        $installment = $nextInstallments[$x];
+                        $installment->rest_amount = 0;
+                        $installment->status = "1";
+                        $installment->save();
+                        break;
+                    }elseif ($advanceAmount > $nextInstallments[$x]->rest_amount){
+                        $installment = $nextInstallments[$x];
+                        $installment->rest_amount = 0;
+                        $installment->status = "1";
+                        $installment->save();
+                    }else{
+                        $installment = $nextInstallments[$x];
+                        $installment->rest_amount = $installment->rest_amount - $advanceAmount;
+                        $installment->status = "0";
+                        $installment->save();
+                        break;
+                    }
+
+                    if (count($nextInstallments) != $x) {
+                        $advanceAmount = $advanceAmount - $nextInstallments[$x]->installment_amount;
+                    }
+                }
+
+                $intallmentTotal = $intallment + $penalty;
+
+                if ($intallmentTotal == intval($request->collection)){
+                    $memberaccount= MemberAccount::find($memberdata->investment->member_id);
+
+                    $loanClose = new MemberCloseLoan();
+                    $loanClose->member_id=$memberdata->investment->member_id;
+                    $loanClose->invest_no=$memberdata->investment->investment_no;
+                    $loanClose->return_investment=$memberaccount->return_investment;
+                    $loanClose->investment_pay=$memberaccount->investment_pay;
+                    $loanClose->penalty=$penalty;
+                    $loanClose->discount_payment=0;
+                    $loanClose->saving_close=0;
+                    $loanClose->save();
+
+                    $memberaccount->return_investment= 0;
+                    $memberaccount->discount_payment= 0;
+                    $memberaccount->rest_investment= 0;
+                    $memberaccount->investment_pay= 0;
+                    $memberaccount->save();
+
+                    $invest = Investment::where('investment_no',$memberdata->investment->investment_no)->first();
+                    $invest->status="2";
+                    $invest->save();
+
+                    $menber = Member::find($memberdata->investment->member_id);
+                    $menber->status="0";
+                    $menber->save();
+
+                    Penalty::where('member_id',$memberdata->investment->member_id)->delete();
+                }
+
+                //return response()->json('success');
             }
-
-            return response()->json('success');
+            $notification = array(
+                'message' => 'Collection Added successfully!',
+                'alert-type' => 'success'
+            );
+            return back()->with($notification);
+        }else{
+            $notification = array(
+                'message' => 'Collection Added not successfully!',
+                'alert-type' => 'warning'
+            );
+            return back()->with($notification);
         }
-        return response()->json('error');
+
+       // return response()->json('error');
     }
 
 

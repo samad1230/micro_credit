@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -98,4 +99,9 @@ Route::put('/InstallmentAdjustAndClose/{id}','Accounts\AccountController@AdjustI
 Route::get('/SavingIdData/{id}','Main_Controller\AjaxController@AccountSavingData');
 Route::get('/penaltyaddMember/{id}','Main_Controller\AjaxController@PenaltyaddByMember');
 Route::get('/InvestmentAdjust/{id}','Main_Controller\AjaxController@AdjustInvestment');
+Route::get('/Collection/Installment/amount/{id}', 'Main_Controller\AjaxController@InstallmentPenaltydata');
+Route::get('/Product/Data', 'Main_Controller\AjaxController@AllProductData');
+Route::get('/Product/Data/{id}', 'Main_Controller\AjaxController@AllProductDataByID');
 
+
+Route::resource('Product','Product\ProductController');

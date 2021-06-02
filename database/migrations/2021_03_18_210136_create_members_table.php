@@ -19,14 +19,15 @@ class CreateMembersTable extends Migration
             $table->string('name')->collation('utf16_general_ci');
             $table->integer('ledgerid');
             $table->string('mobile');
-            $table->string('father_name')->collation('utf16_general_ci');
+            $table->string('father_name')->collation('utf16_general_ci')->nullable();
+            $table->string('husband_name')->collation('utf16_general_ci')->nullable();
             $table->string('mother_name')->collation('utf16_general_ci')->nullable();
             $table->string('occupation')->nullable();
             $table->string('age');
             $table->string('gender');
             $table->string('religion');
             $table->string('marital_status')->nullable();
-            $table->longText('present_address');
+            $table->longText('present_address')->nullable();
             $table->longText('permanent_address')->nullable();
             $table->string('join_date');
             $table->string('status');

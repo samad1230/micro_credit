@@ -159,15 +159,15 @@
                     </li>
 
                     <li class="Ul_li--hover">
-                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Product/Data' || strpos(request()->path(),'member') != false ? 'aria-expanded="true"':'' !!}>
+                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Product' || strpos(request()->path(),'product') != false ? 'aria-expanded="true"':'' !!}>
                             <i class="i-Clothing-Store text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Product/Data' || strpos(request()->path(),'member') != false ? 'font-weight-bold':''}}">Product</span>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Product' || strpos(request()->path(),'product') != false ? 'font-weight-bold':''}}">Product Data</span>
                         </a>
-                        <ul class="mm-collapse {{ request()->path() == 'Product/Data' || strpos(request()->path(),'saving') != false ? 'mm-show':'' }}">
+                        <ul class="mm-collapse {{ request()->path() == 'Product' || strpos(request()->path(),'product') != false ? 'mm-show':'' }}">
                             <li class="item-name">
-                                <a href="#">
+                                <a href="{{ route('Product.index') }}">
                                     <i class="nav-icon i-Bar-Chart-2"></i>
-                                    <span class="item-name {{ request()->path() == 'Product/Data' ? 'font-weight-bold':'' }}">Product</span>
+                                    <span class="item-name {{ request()->path() == 'Product' ? 'font-weight-bold':'' }}">Product</span>
                                 </a>
                             </li>
                         </ul>

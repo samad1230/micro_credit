@@ -33,6 +33,7 @@ class AccountController extends Controller
         $data->penalty=$request->PenaltyAmount;
         $data->date=date('Y-m-d',time());
         $data->user_id=$user_id;
+        //$data->status = true ro false;
         $data->save();
 
         $allinvestment->status="2";
@@ -213,7 +214,7 @@ class AccountController extends Controller
         $investno = $request->investnodata;
 
         $loanadjust = new LoanAdjustment();
-      $data =   $loanadjust->LoanAdjustmentFinal($id,$Installment_dueAmount,$Payment,$discount,$savingamount,$investno);
+        $data =   $loanadjust->LoanAdjustmentFinal($id,$Installment_dueAmount,$Payment,$discount,$savingamount,$investno);
 
         if ($data=="Done"){
             $notification = array(

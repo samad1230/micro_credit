@@ -86,7 +86,7 @@ class MainIndexController extends Controller
         $installmentlastdate = $investment->iRInstallments()->orderBy('id','DESC')->first();
 
         $panaltyBalance = 0;
-        foreach ($investment->member->penaltys as $data){
+        foreach ($investment->member->penaltys->where('status','0') as $data){
             $panaltyBalance += $data->penalty;
         }
 
@@ -113,7 +113,8 @@ class MainIndexController extends Controller
         $installments = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
             ->where('status','!=',"2")
             ->where('status','!=',"1")
-            ->orderBy('date','DESC')->paginate(20);
+            //->orderBy('date','DESC')
+            ->paginate(20);
 
         $today_installment_due = InvestmentReturnInstallment::where('date','<=',date('Y-m-d',$todayDate))
             ->where('status','!=','1')
@@ -126,8 +127,11 @@ class MainIndexController extends Controller
         $today_saving_sum = SavingAccount::where('date','=',date('Y-m-d',$todayDate))
             ->sum('amount');
 
+        $today_penalty_sum = Cash::where('date','=',date('Y-m-d',$todayDate)) ->where('description', 'LIKE', '%' . "Penalty Return taken under" . '%')->sum('dr');
 
-        return view('Investment.daily-investment_view',compact('installments','today_installment_due','today_installment_sum','today_collention_sum','today_saving_sum'));
+
+
+        return view('Investment.daily-investment_view',compact('installments','today_installment_due','today_installment_sum','today_collention_sum','today_saving_sum','today_penalty_sum'));
     }
 
 
@@ -169,13 +173,16 @@ class MainIndexController extends Controller
         $investment = Investment::where('member_id',$member->id)->where('status',1)->first();
         //$investment = Investment::where('member_id',$member->id)->first();
         $investpaid = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('collection_amount');
-        $investdue = InvestmentReturnInstallment::where('investment_id',$investment->id)->sum('rest_amount');
-        $investpanalti = Penalty::where('investment_id',$investment->id)->sum('penalty');
+        $investdue = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status','!=','1')->sum('rest_amount');
+        $investpanalti = Penalty::where('investment_id',$investment->id)->where('status','0')->sum('penalty');
 
         $totaldue = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',0)->count();
         $totalpaid = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',1)->count();
         $totalpnalti = InvestmentReturnInstallment::where('investment_id',$investment->id)->where('status',2)->count();
-        return view('Member_pages.single_member_Accounts_details',compact('member','investment','investpaid','investdue','investpanalti','totaldue','totalpaid','totalpnalti'));
+
+        $installments = $investment->iRInstallments()->where('status','!=','1')->orderBy('id','asc')->get();
+
+        return view('Member_pages.single_member_Accounts_details',compact('member','investment','investpaid','investdue','investpanalti','totaldue','totalpaid','totalpnalti','installments'));
     }
 
 
@@ -211,6 +218,7 @@ class MainIndexController extends Controller
     public function DetailsPenalty()
     {
         $penaltydata = Penalty::select('member_id', DB::raw('SUM(penalty) as penaltyamount '))
+            ->where('status','0')
             ->groupBy('member_id')
             ->get();
         return view('Investment.user_penaty_detail',compact('penaltydata'));
@@ -230,6 +238,8 @@ class MainIndexController extends Controller
             ->orderBy('date','DESC')->paginate(20);
         return view('Report_page.investment_status_view',compact('installments'));
     }
+
+
 
 
 }
