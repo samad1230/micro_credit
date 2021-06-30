@@ -105,3 +105,5 @@ Route::get('/Product/Data/{id}', 'Main_Controller\AjaxController@AllProductDataB
 
 
 Route::resource('Product','Product\ProductController');
+
+Route::resource('UserData','Main_Controller\UserController');

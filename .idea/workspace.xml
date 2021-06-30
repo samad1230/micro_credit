@@ -20,34 +20,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3902b1c8-676d-40ea-8b1b-d102be34dfa9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Product_model/Product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_06_02_173731_create_products_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16226401021622640102r4jg.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16226401681622640168u9cm.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16226334821622633482h4nz.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16226334821622633482h4nz.PIB.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Product/Products.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bootstrap.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Guardian_NUID/16184971151618497115o1ta.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16184969411618496941hocw.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204057821620405781eg0w.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204076811620407681lw9b.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204085501620408550focr.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204841171620484116w5oj.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204898481620489847h501.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16204904601620490460n6td.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/162075108416207510833qd8.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16207521051620752104zsh0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16207524811620752481espi.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16207539771620753976sh7p.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/162256483316225648327smr.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16226419421622641942wqrh.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16234314241623431423csd5.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16234319401623431939qujo.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16235158631623515863gxma.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16235162191623516218rpe0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/162351835816235183576i5q.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/162351865016235186490k16.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16235190421623519042w6i3.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/16235194441623519443x8mt.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_Avature/162351973616235197363a5r.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16184969411618496941hocw.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/161849757016184975709amp.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204057811620405781eg0w.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204064161620406416emoc.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204076811620407681lw9b.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204085501620408550focr.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1620483090162048309083xp.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204841161620484116w5oj.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204898471620489847h501.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16204904601620490460n6td.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162075108316207510833qd8.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16207515201620751520kvio.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16207521041620752104zsh0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16207524811620752481espi.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16207539761620753976sh7p.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162256483216225648327smr.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16226419421622641942wqrh.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1623085334162308533492nr.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1623168271162316827164wz.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/1623168513162316851397io.PIB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16234314231623431423csd5.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16234319391623431939qujo.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162343239616234323966kqv.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235152781623515278dbfu.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235155421623515542x1t0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235158631623515863gxma.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235162181623516218rpe0.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162351835716235183576i5q.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162351864916235186490k16.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235190421623519042w6i3.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/16235194431623519443x8mt.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/Member_NUID/162351973616235197363a5r.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/giant_51883.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/user_profile/1625057291tnpai3.PIB.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Media/user_profile/1625059077a43bnz.PI_S.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/User_page/usersetting.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Accounts/Penalty.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accounts/Penalty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Accounts/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Investment/InvestmentReturnInstallmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Main_Controller/MainIndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Member/MemberController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Member_model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Member_model/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_18_210136_create_members_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_18_210136_create_members_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_03_171648_create_penalties_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_03_171648_create_penalties_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/payment_saving.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/payment_saving.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/add-new_investment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/daily-investment_view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/singel-investment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Investment/single_penaty_show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Investment/single_penaty_show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/add-new-member.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/memver_view_single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/memver_view_single.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Member_pages/single_member_Accounts_details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188289001618828900qod2.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188331471618833147j5af.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/161883887416188388748ip1.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/161886012616188601261bfn.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188601261618860126hy94.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16188608021618860802szjy.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/161886089216188608929ksj.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16226401021622640102r4jg.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Guardian_NUID/16226401681622640168u9cm.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16181716651618171665x9ra.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/1618832938161883293893vd.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16188388181618838818bhzl.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16188600531618860053vait.PIB.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16188607611618860761q5fp.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16188608561618860856zqbx.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_Avature/16226334821622633482h4nz.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/1618832938161883293893vd.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16188388181618838818bhzl.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16188600531618860053vait.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16188607611618860761q5fp.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16188608561618860856zqbx.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/Media/Member_NUID/16226334821622633482h4nz.PIB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Dashboard/Admin_dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Dashboard/Admin_dashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/nav-bar-aside.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -193,6 +250,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/Product" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -207,6 +265,7 @@
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Member_pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\MikroLoad\resources\views\User_page" />
       <recent name="D:\xampp\htdocs\MikroLoad\resources\views\Investment" />
     </key>
   </component>
@@ -262,7 +321,15 @@
       <workItem from="1622379130935" duration="624000" />
       <workItem from="1622379908798" duration="169000" />
       <workItem from="1622537031481" duration="19590000" />
-      <workItem from="1622618945771" duration="20695000" />
+      <workItem from="1622618945771" duration="21273000" />
+      <workItem from="1622715875437" duration="94000" />
+      <workItem from="1622721947908" duration="596000" />
+      <workItem from="1622907019924" duration="363000" />
+      <workItem from="1622907484751" duration="666000" />
+      <workItem from="1623074283362" duration="4000" />
+      <workItem from="1623240122027" duration="41000" />
+      <workItem from="1623306669713" duration="450000" />
+      <workItem from="1625055700861" duration="4857000" />
     </task>
     <servers />
   </component>

@@ -257,12 +257,15 @@
 {{--                        </ul>--}}
 {{--                    </li>--}}
 
+                    <?php
+                    if(\Illuminate\Support\Facades\Auth::user()->role_id ==1){
+                    ?>
                     <li class="Ul_li--hover">
-                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Company/Profile' || request()->path() == 'User/Setting' || strpos(request()->path(),'setting') != false ? 'aria-expanded="true"':'' !!}>
+                        <a class="has-arrow" href="javascript:void (0)" {!! request()->path() == 'Company/Profile' || request()->path() == 'UserData' || strpos(request()->path(),'setting') != false ? 'aria-expanded="true"':'' !!}>
                             <i class="i-Gear text-20 mr-2 text-muted"></i>
-                            <span class="item-name text-15 text-muted {{ request()->path() == 'Company/Profile' || request()->path() == 'User/Setting' || strpos(request()->path(),'setting') != false ? 'font-weight-bold':''}}">Setting</span>
+                            <span class="item-name text-15 text-muted {{ request()->path() == 'Company/Profile' || request()->path() == 'UserData' || strpos(request()->path(),'setting') != false ? 'font-weight-bold':''}}">Setting</span>
                         </a>
-                        <ul class="mm-collapse {{ request()->path() == 'Company/Profile' || request()->path() == 'User/Setting' || strpos(request()->path(),'setting') != false ? 'mm-show':'' }}">
+                        <ul class="mm-collapse {{ request()->path() == 'Company/Profile' || request()->path() == 'UserData' || strpos(request()->path(),'setting') != false ? 'mm-show':'' }}">
                             <li class="item-name">
                                 <a href="#">
                                     <i class="nav-icon i-Bar-Chart-2"></i>
@@ -270,15 +273,18 @@
                                 </a>
                             </li>
                             <li class="item-name">
-                                <a href="#">
+                                <a href="{{route('UserData.index')}}">
                                     <i class="nav-icon i-Bar-Chart-2"></i>
-                                    <span class="item-name {{ request()->path() == 'User/Setting' ? 'font-weight-bold':'' }}">User Setting</span>
+                                    <span class="item-name {{ request()->path() == 'UserData' ? 'font-weight-bold':'' }}">User Setting</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
 
+                    <?php
+                    }
+                    ?>
                     <li class="Ul_li--hover">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
