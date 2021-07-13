@@ -326,10 +326,10 @@
             if(day < 10)
                 day = '0' + day.toString();
 
-            var sanctionMaxDate = year + '-' + month + '-' + day;
-            var disburseMaxDate = year + '-' + month + '-' + (day+1);
-            $('#sanctionDate').attr('min', sanctionMaxDate);
-            $('#disburseDate').attr('min', disburseMaxDate);
+            // var sanctionMaxDate = year + '-' + month + '-' + day;
+            // var disburseMaxDate = year + '-' + month + '-' + (day+1);
+            // $('#sanctionDate').attr('min', sanctionMaxDate);
+            // $('#disburseDate').attr('min', disburseMaxDate);
 
 
             var countp = 0;

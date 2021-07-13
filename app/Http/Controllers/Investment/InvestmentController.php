@@ -324,8 +324,8 @@ class InvestmentController extends Controller
                     $interest = ($investmentAmount * $investment->interest_rate) / 100;
                     $installmentProfit = $interest / $investment->installment_count;
 
-                    $duration = ($investment->investment_behaviour * $a) + 1;
-                    $timestamp = time() + $duration * 24 * 60 * 60;
+                    $duration = ($investment->investment_behaviour * $a);
+                    $timestamp = strtotime($request->installment_date) + $duration * 24 * 60 * 60;
 
                     $installment = new InvestmentReturnInstallment();
                     $installment->investment_id = $investment->id;
@@ -348,7 +348,7 @@ class InvestmentController extends Controller
             $memberaccount->save();
 
 
-            $investment->disburse_date = date('Y-m-d',time());
+            $investment->disburse_date = date('Y-m-d',strtotime($request->disburse_date));
             $investment->status = "1";
             $investment->save();
 

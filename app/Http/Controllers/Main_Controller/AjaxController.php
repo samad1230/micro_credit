@@ -142,7 +142,7 @@ class AjaxController extends Controller
 
     public function AllProductDataByID($id)
     {
-        $data = Product::where('id',$id)->first();
+        $data = Product::where('id',$id)->first ();
         return response()->json($data);
     }
 

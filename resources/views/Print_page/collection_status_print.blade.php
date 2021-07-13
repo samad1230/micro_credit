@@ -15,9 +15,9 @@
                 <div class="row">
                     <div class="col">
                         <div class="printhead">
-                            <h4><img width="80px" src="{{ asset('Media/company_profile/'.$company->image) }}" alt="Image"></h4>
-                            <h6>{{$company->name}}</h6>
-                            <h6>{{$company->address}}</h6>
+                            <h4><img width="80px" src="{{ asset('Media/company_profile/'.@$company->image) }}" alt="Image"></h4>
+                            <h6>{{@$company->name}}</h6>
+                            <h6>{{@$company->address}}</h6>
                         </div>
                     </div>
                 </div>

@@ -81,7 +81,7 @@ Route::put('/Guardian/Update/{id}','Investment\InvestmentController@GuargianUpda
 //====================investment roure  ========================================
 
 //===================== installment retur======================================
-Route::post('/Investment/Return-Collection','Investment\InvestmentReturnInstallmentController@installmentInsert');
+Route::post('/Investment/ReturnCollection','Investment\InvestmentReturnInstallmentController@installmentInsert')->name('Investment.ReturnCollection');
 Route::post('/Member-saving_deposit','Investment\InvestmentReturnInstallmentController@SavingInstallment');
 //===================== installment retur======================================
 
@@ -107,3 +107,4 @@ Route::get('/Product/Data/{id}', 'Main_Controller\AjaxController@AllProductDataB
 Route::resource('Product','Product\ProductController');
 
 Route::resource('UserData','Main_Controller\UserController');
+Route::resource('CompanyProfice','Main_Controller\CompanyProfileController');

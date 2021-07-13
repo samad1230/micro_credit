@@ -158,6 +158,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="" for="Contact">{{ ucwords('installment date') }}</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" name="installment_date" id="installmentDate" type="date" value="" required="required">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="modal-body">
                             <div class="row">
@@ -245,7 +255,9 @@
                 day = '0' + day.toString();
 
             var disburseMaxDate = year + '-' + month + '-' + (day);
-            $('#disburseDate').attr('min', disburseMaxDate);
+            //$('#disburseDate').attr('min', disburseMaxDate);
+            $('#disburseDate').attr(disburseMaxDate);
+            $('#installmentDate').attr(disburseMaxDate);
         });
 
         function checkFunction() {

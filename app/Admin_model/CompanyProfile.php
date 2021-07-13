@@ -9,4 +9,6 @@ class CompanyProfile extends Model
     protected $fillable =[
         'name','address','contact','license','owner','vat','image'
     ];
+
+
 }
