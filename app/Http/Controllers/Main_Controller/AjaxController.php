@@ -81,29 +81,27 @@ class AjaxController extends Controller
         $newid = "#".$id;
         $allinvestment = InvestmentReturnInstallment::where('voucher_no',$newid)->first();
 
-        $allvoucher = InvestmentReturnInstallment::where('investment_id',$allinvestment->investment_id)
-            ->where('status',"2")
-            ->orwhere('status',"0")
-            ->get();
+//        $allvoucher = InvestmentReturnInstallment::where('investment_id',$allinvestment->investment_id)
+//            ->where('status',"2")
+//            ->orwhere('status',"0")
+//            ->get();
+
+        $allvoucher = InvestmentReturnInstallment::where(['investment_id'=>$allinvestment->investment_id,'status'=>['0','2']])->get();
 
         $current = new Carbon();
         $today =  $current->format('Y-m-d');
 
-        $x = 0;
-        while($x < count($allvoucher)) {
-            if ($today == $allvoucher[$x]->date) {
-                break;
+        for ($x = 0; count($allvoucher) > $x; $x++ ){
+            if ($today >= $allvoucher[$x]->date) {
+                $investmentid[] = $allvoucher[$x]->id;
             }
-            $investmentid[] = $allvoucher[$x]->id;
-            $x++;
         }
+
 
         if (!empty($investmentid)){
             for ($i=0; count($investmentid) > $i; $i++ ){
                 $previusinstallment_due[] = InvestmentReturnInstallment::where('id',$investmentid[$i])->get();
             }
-
-
             $previus_due=0;
             $vouchercount=0;
 
@@ -111,7 +109,6 @@ class AjaxController extends Controller
                 $previus_due += $previusinstallment_due[$v][0]->rest_amount;
                 $vouchercount = count($previusinstallment_due);
             }
-
             $previusdue=$previus_due;
             $voucher_count=$vouchercount;
         }else{

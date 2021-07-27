@@ -173,7 +173,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="" class="paymentCollection_data" method="POST"  enctype="multipart/form-data">
+                    <form action="{{route('Investment.ReturnCollection')}}" class="" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
@@ -300,12 +300,12 @@
     <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('js/payment_saving.js') }}"></script>
 
-
     <script !src="">
         $(document).on("click", ".penaltyfine", function(e){
             e.preventDefault();
             var voucherNo = $(this).attr('id');
             var voucher = voucherNo.replace('#', '');
+
             $.ajax({
                 type: 'GET',
                 url:'/Penalty/Installment/amount/'+voucher,
@@ -327,10 +327,12 @@
             e.preventDefault();
             var voucherNo = $(this).attr('id');
             var voucher = voucherNo.replace('#', '');
+
             $.ajax({
                 type: 'GET',
                 url:'/Collection/Installment/amount/'+voucher,
                 success: function (data) {
+                    //console.log(data);
                     $("#member_name_collection").val(data.membername);
                     $("#voucher_collection").val(data.voucher_no);
                     $("#due_voucher_amount").val(data.vouchercount);
@@ -338,7 +340,7 @@
                     $("#due_installment").val(data.previusdue).css({"color": "red", "font-weight": "bold"});
                     $("#penalty_due").val(data.penaltydue).css({"color": "purple", "font-weight": "bold"});
                     document.getElementById("collection_pay").focus();
-                    $('.paymentCollection_data').attr('action', '/Investment/Return-Collection/');
+                    //$('.paymentCollection_data').attr('action', '/Investment/Return-Collection/');
                 }
             });
             $("#InvestmentCollection").modal('show');

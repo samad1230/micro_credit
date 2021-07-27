@@ -284,8 +284,6 @@ class InvestmentController extends Controller
             $cash->save();
         }
 
-
-
         $cashDrBalance = Cash::all()->sum('dr');
         $cashcrBalance = Cash::all()->sum('cr');
         $cashAtHand = $cashDrBalance - $cashcrBalance;
@@ -325,7 +323,8 @@ class InvestmentController extends Controller
                     $installmentProfit = $interest / $investment->installment_count;
 
                     $duration = ($investment->investment_behaviour * $a);
-                    $timestamp = strtotime($request->installment_date) + $duration * 24 * 60 * 60;
+                    $setdate = strtotime($request->installment_date) - $investment->investment_behaviour * 24 * 60 * 60;;
+                    $timestamp = $setdate + $duration * 24 * 60 * 60;
 
                     $installment = new InvestmentReturnInstallment();
                     $installment->investment_id = $investment->id;
@@ -357,12 +356,13 @@ class InvestmentController extends Controller
                 $investmentAmount = $investment->investment_amount - $investment->downpayment;
             }
 
-            $cash = new Cash();
-            $cash->date = date('Y-m-d',time());
-            $cash->description = 'Invest on '. $investment->member->name;
-            $cash->cr = number_format($investmentAmount,'2','.','');
-            $cash->save();
-
+            if($investment->investment_type !="product"){
+                $cash = new Cash();
+                $cash->date = date('Y-m-d',time());
+                $cash->description = 'Invest on '. $investment->member->name;
+                $cash->cr = number_format($investmentAmount,'2','.','');
+                $cash->save();
+            }
         } // investment sucess
 
 

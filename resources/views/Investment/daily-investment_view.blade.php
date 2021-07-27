@@ -275,6 +275,7 @@
                 type: 'GET',
                 url:'/Collection/Installment/amount/'+voucher,
                 success: function (data) {
+                   // console.log(data);
                     $("#member_name_collection").val(data.membername);
                     $("#voucher_collection").val(data.voucher_no);
                     $("#due_voucher_amount").val(data.vouchercount);

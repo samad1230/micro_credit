@@ -420,7 +420,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="" class="paymentCollection_data" method="POST"  enctype="multipart/form-data">
+                    <form action="{{route('Investment.ReturnCollection')}}" class="" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
@@ -675,7 +675,7 @@
                     $("#due_installment").val(data.previusdue).css({"color": "red", "font-weight": "bold"});
                     $("#penalty_due").val(data.penaltydue).css({"color": "purple", "font-weight": "bold"});
                     document.getElementById("collection_pay").focus();
-                    $('.paymentCollection_data').attr('action', '/Investment/Return-Collection/');
+                    //$('.paymentCollection_data').attr('action', '/Investment/Return-Collection/');
                 }
             });
             $("#InvestmentCollection").modal('show');
